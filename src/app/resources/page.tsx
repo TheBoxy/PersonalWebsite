@@ -137,7 +137,7 @@ const ContactForm = () => {
         setSubmitStatus('error');
         setErrorMessage(data.error || 'Failed to send message');
       }
-    } catch (error) {
+    } catch (_error) {
       setSubmitStatus('error');
       setErrorMessage('Failed to send message. Please try again.');
     } finally {

@@ -1,6 +1,5 @@
 'use client';
 
-import { notFound } from 'next/navigation';
 import { getBlogPost, getAdjacentPosts, BlogPost } from '../data';
 import BlogNavigation from '../components/BlogNavigation';
 import { useEffect, useState } from 'react';
@@ -11,7 +10,7 @@ function processHTMLContent(htmlContent: string): string {
   if (!htmlContent) return '';
   
   // Remove Medium-specific tracking and unwanted elements
-  let cleanContent = htmlContent
+  const cleanContent = htmlContent
     // Remove tracking pixels and analytics (but keep real images)
     .replace(/<img[^>]*src="[^"]*\/_\/stat[^"]*"[^>]*>/gi, '')
     .replace(/<img[^>]*src="[^"]*analytics[^"]*"[^>]*>/gi, '')

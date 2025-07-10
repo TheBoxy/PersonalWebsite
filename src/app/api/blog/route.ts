@@ -1,6 +1,17 @@
 import { NextResponse } from 'next/server';
 import RSSParser from 'rss-parser';
 
+interface RSSItem {
+  guid?: string;
+  title?: string;
+  pubDate?: string;
+  isoDate?: string;
+  categories?: string[];
+  link?: string;
+  content?: string;
+  'content:encoded'?: string;
+}
+
 const parser = new RSSParser({
   customFields: {
     item: ['content:encoded'],
@@ -78,7 +89,7 @@ function extractValidImage(content: string): string | null {
   return null;
 }
 
-function transformMediumPost(item: any, index: number) {
+function transformMediumPost(item: RSSItem, index: number) {
   const content = item['content:encoded'] || item.content || '';
   const imageUrl = extractValidImage(content);
   

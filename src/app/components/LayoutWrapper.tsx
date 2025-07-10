@@ -163,7 +163,7 @@ export default function LayoutWrapper({
       <div 
         className="fixed inset-0 w-full h-full"
         style={{ 
-          backgroundImage: 'linear-gradient(135deg, #87CEEB 0%, #B0E0E6 50%, #D0E7FF 100%)',
+          backgroundImage: backgroundColor,
           zIndex: -1
         }}
       >

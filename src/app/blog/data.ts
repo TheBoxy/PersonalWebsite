@@ -122,6 +122,7 @@ export async function getServerSideProps() {
       }
     };
   } catch (error) {
+    console.error('Error in getServerSideProps:', error);
     return {
       props: {
         initialPosts: getFallbackPosts()

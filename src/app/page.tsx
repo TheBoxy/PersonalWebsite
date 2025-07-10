@@ -45,7 +45,6 @@ export default function HomePage() {
     const calculateCenteredPositions = () => {
       // Calculate window center
       const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
       
       // Responsive sizing based on screen width
       const isMobile = windowWidth < 768;
@@ -100,9 +99,9 @@ export default function HomePage() {
         const firstRow = INITIAL_TEXT.slice(0, 10); // "welcome to"
         const secondRow = INITIAL_TEXT.slice(10);   // " kevin's site"
         
-        // Calculate row widths
-        const firstRowWidth = firstRow.length * letterSpacing;
-        const secondRowWidth = secondRow.length * letterSpacing;
+        // Calculate row widths (for potential future use)
+        // const firstRowWidth = firstRow.length * letterSpacing;
+        // const secondRowWidth = secondRow.length * letterSpacing;
         
         // Desktop positioning
         const firstRowStartX = 160;
