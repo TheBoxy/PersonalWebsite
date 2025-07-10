@@ -354,9 +354,9 @@ export default function HomePage() {
               <p className="text-white text-2xl font-bold">
               Drink your water!
               </p>
-              <p className="text-white text-2xl font-bold">
-              If it's meant for you, it will find you!
-              </p>
+                             <p className="text-white text-2xl font-bold">
+               If it&apos;s meant for you, it will find you!
+               </p>
             
             </div>
           </div>
