@@ -86,11 +86,37 @@ export default function HomePage() {
           else if (wordIndex === 2) yPosition += lineHeight + (lineHeight * 0.7); // "kevin's" - reduced space after "to"
           else if (wordIndex === 3) yPosition += lineHeight + (lineHeight * 0.7) + lineHeight; // "site"
           
+          // Calculate base x position
+          let xPosition = wordStartX + (letterIndexInWord * letterSpacing);
+          
+          // Special adjustments for letter pairs that are too far apart
+          if (index === 15) { // "n" in "kevin's" - bring closer to "i"
+            xPosition -= 25; // Move 25px closer to "i"
+          }
+          if (index === 16) { // "'" in "kevin's" - cascade the spacing
+            xPosition -= 25; // Keep consistent spacing
+          }
+          if (index === 17) { // "s" in "kevin's" - cascade the spacing
+            xPosition -= 25; // Keep consistent spacing
+          }
+          
+          // Shift entire "site" word to the left
+          if (index >= 19 && index <= 22) { // All letters in "site"
+            xPosition -= 20; // Shift entire word left
+          }
+          
+          if (index === 21) { // "t" in "site" - bring closer to "i"
+            xPosition -= 30; // Move 30px closer to "i"
+          }
+          if (index === 22) { // "e" in "site" - cascade the spacing
+            xPosition -= 30; // Keep consistent spacing
+          }
+          
           return {
             id: `initial-${index}`,
             letter,
             color: getColor(letter, index),
-            x: Math.round(wordStartX + (letterIndexInWord * letterSpacing)),
+            x: Math.round(xPosition),
             y: Math.round(yPosition + Math.sin(index * 0.5) * 10), // Reduced wave effect for mobile
           };
         });
@@ -124,11 +150,37 @@ export default function HomePage() {
             startX = secondRowStartX - 30; // Move "site" 30px to the left
           }
           
+          // Calculate base x position
+          let xPosition = startX + (rowIndex * letterSpacing);
+          
+          // Special adjustments for letter pairs that are too far apart
+          if (index === 15) { // "n" in "kevin's" - bring closer to "i"
+            xPosition -= 35; // Move 35px closer to "i" (desktop needs more adjustment)
+          }
+          if (index === 16) { // "'" in "kevin's" - cascade the spacing
+            xPosition -= 35; // Keep consistent spacing
+          }
+          if (index === 17) { // "s" in "kevin's" - cascade the spacing
+            xPosition -= 35; // Keep consistent spacing
+          }
+          
+          // Shift entire "site" word to the left
+          if (index >= 19 && index <= 22) { // All letters in "site"
+            xPosition -= 30; // Shift entire word left (desktop needs more adjustment)
+          }
+          
+          if (index === 21) { // "t" in "site" - bring closer to "i"
+            xPosition -= 40; // Move 40px closer to "i" (desktop needs more adjustment)
+          }
+          if (index === 22) { // "e" in "site" - cascade the spacing
+            xPosition -= 40; // Keep consistent spacing
+          }
+          
           return {
             id: `initial-${index}`,
             letter,
             color: getColor(letter, index),
-            x: Math.round(startX + (rowIndex * letterSpacing)),
+            x: Math.round(xPosition),
             y: Math.round(topOffset + (isSecondRow ? lineHeight : 0) + Math.sin(index * 0.5) * 20), // Reduced wave effect
           };
         });
@@ -237,9 +289,19 @@ export default function HomePage() {
               
               {/* Profile Info */}
               <div className="w-full">
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                   Kevin Martinez
                 </h1>
+                
+                {/* Tags */}
+                <div className="mb-6 flex flex-wrap gap-2 justify-center">
+                  <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-blue-300/50 tracking-wide">
+                    Human
+                  </span>
+                  <span className="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-green-300/50 tracking-wide">
+                    Mexican
+                  </span>
+                </div>
                 
                 {/* About Me */}
                 <div className="text-left">
@@ -261,7 +323,7 @@ export default function HomePage() {
             
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                <strong>Welcome to my site!</strong> I aim to host all my writings and projects I am working on in this site. I would like to have a place where all the stuff I am working on can be easily accessed in one spot. 
+                <strong>Welcome to my site!</strong> I aim to host all my writings and projects I am working on in this site. I wanted a place where all the stuff I am working on can be easily accessed in one spot. 
               </p>
               
               <p>
@@ -285,6 +347,17 @@ export default function HomePage() {
               <p className="text-white text-2xl font-bold">
                 Be who you want to be!
               </p>
+              <p></p>
+              <p className="text-white text-2xl font-bold">
+              Remember, you are goated!
+              </p>
+              <p className="text-white text-2xl font-bold">
+              Drink your water!
+              </p>
+              <p className="text-white text-2xl font-bold">
+              If it's meant for you, it will find you!
+              </p>
+            
             </div>
           </div>
         </div>

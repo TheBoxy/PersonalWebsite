@@ -127,7 +127,7 @@ const Magnet: React.FC<MagnetProps> = ({ letter, initialX, initialY, color }) =>
       onTouchStart={handleTouchStart}
     >
       <div
-        className="font-black relative"
+        className="relative"
         style={{
           fontSize: isMobile ? '3rem' : isTablet ? '4.5rem' : '6rem',
           color: 'transparent',
@@ -148,7 +148,8 @@ const Magnet: React.FC<MagnetProps> = ({ letter, initialX, initialY, color }) =>
             -1px -1px 0 rgba(0,0,0,0.1),
             4px 4px 8px rgba(0,0,0,0.2)
           `,
-          fontFamily: '"Comic Sans MS", cursive, sans-serif',
+          fontFamily: 'var(--font-fredoka), "Arial Black", "Helvetica Neue", sans-serif',
+          fontWeight: '700',
           userSelect: 'none',
           lineHeight: '1',
           filter: isMobile ? 'drop-shadow(0 3px 4px rgba(0,0,0,0.35)) brightness(1.1)' : 'drop-shadow(0 6px 8px rgba(0,0,0,0.35)) brightness(1.1)',

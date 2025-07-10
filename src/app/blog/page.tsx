@@ -31,11 +31,10 @@ export default function BlogPage() {
       <div className="space-y-8">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Blog
+            KBlog
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Thoughts on web development, design, and technology. 
-            Sharing insights and lessons learned along the way.
+            Thoughts on random things I find interesting. These are posted on my Medium.com account.
           </p>
         </div>
         
@@ -58,11 +57,10 @@ export default function BlogPage() {
       <div className="space-y-8">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Blog
+            KBlog
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Thoughts on web development, design, and technology. 
-            Sharing insights and lessons learned along the way.
+            Thoughts on random things I find interesting. These are posted on my Medium.com account.
           </p>
         </div>
         

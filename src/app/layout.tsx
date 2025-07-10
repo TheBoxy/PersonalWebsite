@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Kalam } from "next/font/google";
+import { Geist, Kalam, Fredoka } from "next/font/google";
 import "./globals.css";
 import dynamic from 'next/dynamic';
 
@@ -21,6 +21,12 @@ const kalam = Kalam({
   variable: "--font-kalam",
 });
 
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-fredoka",
+});
+
 export const metadata: Metadata = {
   title: "Kev's Site",
   description: "A website with folder-style navigation",
@@ -33,7 +39,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geist.className} ${kalam.variable} min-h-screen`}>
+      <body className={`${geist.className} ${kalam.variable} ${fredoka.variable} min-h-screen`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-6">
           <div className="relative">
             <FolderNavigation />
