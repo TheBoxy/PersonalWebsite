@@ -96,12 +96,6 @@ export default function HomePage() {
         });
       } else {
         // Desktop: Two-row layout
-        const firstRow = INITIAL_TEXT.slice(0, 10); // "welcome to"
-        const secondRow = INITIAL_TEXT.slice(10);   // " kevin's site"
-        
-        // Calculate row widths (for potential future use)
-        // const firstRowWidth = firstRow.length * letterSpacing;
-        // const secondRowWidth = secondRow.length * letterSpacing;
         
         // Desktop positioning
         const firstRowStartX = 160;
@@ -251,7 +245,7 @@ export default function HomePage() {
                 <div className="text-left">
                   <h2 className="text-xl font-bold text-gray-800 mb-4 underline">About Me</h2>
                   <p className="text-gray-700 leading-relaxed">
-                    Hi, I'm Kevin! I'm from South Central Los Angeles, have a computer science degree from UCI and want to share a couple of my projects. Look around and maybe something resonates with you. I hope to keep on creating so keep on coming back to stay up to date. Creating from the chaos. Growing through the noise.
+                    Hi, I&apos;m Kevin! I&apos;m from South Central Los Angeles, have a computer science degree from UCI and want to share a couple of my projects. Look around and maybe something resonates with you. I hope to keep on creating so keep on coming back to stay up to date. Creating from the chaos. Growing through the noise.
                   </p>
                 </div>
               </div>
