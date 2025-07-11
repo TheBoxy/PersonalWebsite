@@ -43,7 +43,7 @@ export default function ProjectsPage() {
       id: 'spotify-era',
       name: 'SPOTIFY ERA GENERATOR',
       handle: 'Vercel Website',
-      description: 'This website analyzes your current most listened to songs on Spotify and generates an era based on your music taste. NOTE: In order to gain access you have to send me the email you use for spotify. I only have limited access to the Spotify api right now and have to manually add you through the developer dashboard. Yes, I know this is a bit sketchy but this is the only way you can currently access the site. Hopefully, if at least 20 people actively use the site then I can submit an application that lets others have access without having to send me their emails. Until then this is the only way. Email me in the resources tab!!',
+      description: 'This website analyzes your current most listened to songs on Spotify and generates an era based on your music taste. NOTE: In order to fully gain access you have to send me the email you use for spotify. I only have limited access to the Spotify api right now and have to manually add you through the developer dashboard. Yes, I know this is a bit sketchy but this is the only way you can currently access the site. Hopefully, if at least 20 people actively use the site then I can submit an application that lets others have access without having to send me their emails. Until then this is the only way. Email me in the resources tab!!',
       status: 'BETA',
       type: 'WEB_APPLICATION',
       url: 'https://spotify-era-generator.vercel.app/'
@@ -54,7 +54,7 @@ export default function ProjectsPage() {
         id: 'website',
         name: 'STICKY NOTE WEBSITE',
         handle: 'Website',
-        description: 'This is a side personal website. It is a work in progress and I am burnt out on it currently.',
+        description: 'This is a side website that uses sticky notes as the format to display content. It is a major work in progress and I am burnt out on it currently. If you want more info you can check my youtube channel.',
         status: 'IDLE',
         type: 'WEB_APPLICATION',
         url: ''

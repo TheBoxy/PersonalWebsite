@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://kevinbm.com/sitemap.xml
+
+# Block access to API routes from crawlers
+Disallow: /api/ 

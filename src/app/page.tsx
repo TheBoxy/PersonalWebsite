@@ -307,7 +307,7 @@ export default function HomePage() {
                 <div className="text-left">
                   <h2 className="text-xl font-bold text-gray-800 mb-4 underline">About Me</h2>
                   <p className="text-gray-700 leading-relaxed">
-                    Hi, I&apos;m Kevin! I&apos;m from South Central Los Angeles, have a computer science degree from UCI and want to share a couple of my projects. Look around and maybe something resonates with you. I hope to keep on creating so keep on coming back to stay up to date. Creating from the chaos. Growing through the noise.
+                    Hi, I&apos;m Kevin! I&apos;m from South Central Los Angeles and have a Computer Science degree from UCI. I want to share a few of my projects so feel free to explore and see if something resonates with you. I hope to keep on creating so come back to stay up to date. Creating from the chaos. Growing through the noise.
                   </p>
                 </div>
               </div>
