@@ -113,15 +113,27 @@ export async function GET() {
     
     const posts = feed.items.map((item, index) => transformMediumPost(item, index));
     
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
       posts: posts,
       totalPosts: posts.length,
       lastUpdated: new Date().toISOString()
     });
+
+    // Add cache-busting headers for development
+    if (process.env.NODE_ENV === 'development') {
+      response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+      response.headers.set('Pragma', 'no-cache');
+      response.headers.set('Expires', '0');
+    } else {
+      // In production, cache for 5 minutes
+      response.headers.set('Cache-Control', 'public, max-age=300, s-maxage=300');
+    }
+
+    return response;
   } catch (error) {
     console.error('Error fetching Medium RSS:', error);
-    return NextResponse.json(
+    const errorResponse = NextResponse.json(
       { 
         success: false, 
         error: 'Failed to fetch Medium posts',
@@ -129,5 +141,9 @@ export async function GET() {
       },
       { status: 500 }
     );
+
+    // No cache for errors
+    errorResponse.headers.set('Cache-Control', 'no-store');
+    return errorResponse;
   }
 } 

@@ -19,8 +19,10 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 async function fetchMediumPosts(): Promise<BlogPost[]> {
   const now = Date.now();
   
-  // Return cached posts if they're still fresh
-  if (cachedPosts.length > 0 && now - lastFetchTime < CACHE_DURATION) {
+  // In development, always fetch fresh data. In production, use cache.
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  
+  if (!isDevelopment && cachedPosts.length > 0 && now - lastFetchTime < CACHE_DURATION) {
     return cachedPosts;
   }
 
@@ -32,10 +34,23 @@ async function fetchMediumPosts(): Promise<BlogPost[]> {
     
     const apiUrl = typeof window !== 'undefined' ? '/api/blog' : `${baseUrl}/api/blog`;
     
-    const response = await fetch(apiUrl, {
-      next: { revalidate: 300 }, // Revalidate every 5 minutes
-      cache: 'force-cache' // Use cache to ensure consistency
-    });
+    // Add cache-busting parameter in development
+    const fetchUrl = isDevelopment ? `${apiUrl}?t=${now}` : apiUrl;
+    
+    const fetchOptions: RequestInit = isDevelopment 
+      ? {
+          cache: 'no-store', // No caching in development
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        }
+      : {
+          next: { revalidate: 300 }, // Revalidate every 5 minutes in production
+          cache: 'force-cache' // Use cache to ensure consistency in production
+        };
+    
+    const response = await fetch(fetchUrl, fetchOptions);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
