@@ -59,13 +59,60 @@ export default function BlogPostPage() {
   const [adjacentPosts, setAdjacentPosts] = useState<{ prev: BlogPost | null; next: BlogPost | null }>({ prev: null, next: null });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [hasTriedForceRefresh, setHasTriedForceRefresh] = useState(false);
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      if (!slug) return;
+  const fetchPost = async (forceRefresh = false) => {
+    if (!slug) return;
+    
+    try {
+      setLoading(true);
+      setError(null);
       
-      try {
-        setLoading(true);
+      if (forceRefresh) {
+        setHasTriedForceRefresh(true);
+      }
+      
+      if (forceRefresh && typeof window !== 'undefined') {
+        // Force refresh: bypass cache and fetch fresh data
+        const timestamp = Date.now();
+        const response = await fetch(`/api/blog?t=${timestamp}`, {
+          cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        if (data.success && data.posts) {
+          // Find the post and adjacent posts from fresh data
+          const blogPost = data.posts.find((p: BlogPost) => p.slug === slug);
+          const sortedPosts = data.posts.sort((a: BlogPost, b: BlogPost) => 
+            new Date(b.date).getTime() - new Date(a.date).getTime()
+          );
+          const currentIndex = sortedPosts.findIndex((p: BlogPost) => p.slug === slug);
+          
+          if (!blogPost) {
+            setError('Post not found');
+            return;
+          }
+          
+          const adjacent = {
+            prev: currentIndex > 0 ? sortedPosts[currentIndex - 1] : null,
+            next: currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null
+          };
+          
+          setPost(blogPost);
+          setAdjacentPosts(adjacent);
+        } else {
+          setError('Failed to fetch posts');
+        }
+      } else {
+        // Use normal cached data
         const [blogPost, adjacent] = await Promise.all([
           getBlogPost(slug),
           getAdjacentPosts(slug)
@@ -78,16 +125,32 @@ export default function BlogPostPage() {
         
         setPost(blogPost);
         setAdjacentPosts(adjacent);
-      } catch (err) {
-        setError('Failed to load blog post');
-        console.error('Error fetching blog post:', err);
-      } finally {
-        setLoading(false);
       }
-    };
+    } catch (err) {
+      setError('Failed to load blog post');
+      console.error('Error fetching blog post:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchPost();
   }, [slug]);
+
+  // Reset force refresh flag when slug changes
+  useEffect(() => {
+    setHasTriedForceRefresh(false);
+  }, [slug]);
+
+  // Auto-retry with force refresh if post not found (only once)
+  useEffect(() => {
+    if (error === 'Post not found' && !loading && !hasTriedForceRefresh) {
+      // Try once more with force refresh
+      console.log('Post not found, trying with force refresh...');
+      fetchPost(true);
+    }
+  }, [error, loading, hasTriedForceRefresh]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -131,10 +194,24 @@ export default function BlogPostPage() {
             : 'Failed to load the blog post. Please try again.'}
         </p>
         <button 
-          onClick={() => window.location.reload()}
-          className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg transition-colors"
+          onClick={() => fetchPost(true)}
+          disabled={loading}
+          className="bg-cyan-500 hover:bg-cyan-600 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2 mx-auto"
         >
-          Try Again
+          <svg 
+            className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" 
+            />
+          </svg>
+          {loading ? 'Refreshing...' : 'Try Again'}
         </button>
       </div>
     );
@@ -146,9 +223,32 @@ export default function BlogPostPage() {
     <div className="max-w-4xl mx-auto">
       <article>
         <header className="mb-8 text-center border-b border-gray-200 pb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            {post.title}
-          </h1>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <h1 className="text-4xl font-bold text-gray-900">
+              {post.title}
+            </h1>
+            <button
+              onClick={() => fetchPost(true)}
+              disabled={loading}
+              className="bg-cyan-500 hover:bg-cyan-600 disabled:bg-gray-400 text-white px-2 py-1 rounded-lg transition-colors text-xs flex items-center gap-1"
+              title="Refresh this post"
+            >
+              <svg 
+                className={`w-3 h-3 ${loading ? 'animate-spin' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" 
+                />
+              </svg>
+              {loading ? 'Refreshing...' : 'Refresh'}
+            </button>
+          </div>
           
           <div className="flex items-center justify-center text-gray-500 mb-6">
             <time dateTime={post.date}>
