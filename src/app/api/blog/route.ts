@@ -126,8 +126,8 @@ export async function GET() {
       response.headers.set('Pragma', 'no-cache');
       response.headers.set('Expires', '0');
     } else {
-      // In production, cache for 5 minutes
-      response.headers.set('Cache-Control', 'public, max-age=300, s-maxage=300');
+      // In production, cache for 2 minutes for more responsive updates
+      response.headers.set('Cache-Control', 'public, max-age=120, s-maxage=120');
     }
 
     return response;

@@ -14,7 +14,7 @@ export interface BlogPost {
 // Cache for Medium posts to avoid frequent API calls
 let cachedPosts: BlogPost[] = [];
 let lastFetchTime = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
+const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes in milliseconds
 
 async function fetchMediumPosts(): Promise<BlogPost[]> {
   const now = Date.now();
@@ -46,7 +46,7 @@ async function fetchMediumPosts(): Promise<BlogPost[]> {
           }
         }
       : {
-          next: { revalidate: 300 }, // Revalidate every 5 minutes in production
+          next: { revalidate: 120 }, // Revalidate every 2 minutes in production
           cache: 'force-cache' // Use cache to ensure consistency in production
         };
     
