@@ -2,16 +2,16 @@
 
 import { getBlogPosts, BlogPost } from './data';
 import BlogCard from './components/BlogCard';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
-  const [lastFetch, setLastFetch] = useState<number>(0);
   const [autoRefreshing, setAutoRefreshing] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<string>('');
+  const lastFetchRef = useRef<number>(0);
 
   const fetchPosts = async (forceRefresh = false, silent = false) => {
     try {
@@ -40,7 +40,7 @@ export default function BlogPage() {
       const data = await response.json();
       if (data.success && data.posts) {
         setPosts(data.posts);
-        setLastFetch(timestamp);
+        lastFetchRef.current = timestamp;
         setLastUpdated(new Date().toLocaleTimeString());
       } else {
         throw new Error(data.error || 'Failed to fetch posts');
@@ -73,18 +73,20 @@ export default function BlogPage() {
 
   useEffect(() => {
     fetchPosts();
-    
+  }, []);
+
+  useEffect(() => {
     // Set up automatic refresh every 2 minutes
     const autoRefreshInterval = setInterval(() => {
       const now = Date.now();
       // Only auto-refresh if the page is visible and it's been more than 2 minutes
-      if (!document.hidden && now - lastFetch > 2 * 60 * 1000) {
+      if (!document.hidden && now - lastFetchRef.current > 2 * 60 * 1000) {
         fetchPosts(false, true); // Silent refresh
       }
     }, 2 * 60 * 1000); // Check every 2 minutes
 
     return () => clearInterval(autoRefreshInterval);
-  }, [lastFetch]);
+  }, []); // Empty dependency array since we're using ref
 
   const handleRefresh = () => {
     fetchPosts(true);
