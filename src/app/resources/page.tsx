@@ -369,6 +369,12 @@ export default function ResourcesPage() {
             description="Teen-to-teen support: 1-800-852-8336"
           />
           
+          <ResourceLink 
+            title="Underage Drinking and Its Dangers"
+            url="https://brownandcrouppen.com/underage-drinking-and-its-dangers"
+            description="Information about the risks and consequences of underage drinking"
+          />
+          
 
         </PaperNote>
 
