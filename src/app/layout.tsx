@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Kalam, Fredoka } from "next/font/google";
 import "./globals.css";
 import dynamic from 'next/dynamic';
+import { Analytics } from "@vercel/analytics/next";
 
 const FolderNavigation = dynamic(() => import('./components/FolderNavigation'), {
   ssr: true
@@ -48,6 +49,7 @@ export default function RootLayout({
             </LayoutWrapper>
           </div>
         </div>
+        <Analytics />
       </body>
     </html>
   );
