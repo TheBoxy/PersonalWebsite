@@ -97,7 +97,7 @@ function transformMediumPost(item: RSSItem, index: number) {
     id: item.guid || `medium-${index}`,
     title: item.title || 'Untitled Post',
     slug: createSlug(item.title || `untitled-post-${index}`),
-    date: new Date(item.pubDate || item.isoDate || Date.now()).toISOString().split('T')[0],
+    date: new Date(item.pubDate || item.isoDate || Date.now()).toISOString(),
     excerpt: extractExcerpt(content),
     content: content,
     tags: item.categories || ['Blog'],
