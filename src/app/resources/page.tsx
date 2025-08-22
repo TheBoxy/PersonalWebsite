@@ -308,6 +308,14 @@ export default function ResourcesPage() {
             url="https://www.rainn.org"
             description="24/7 support at 1-800-656-4673"
           />
+
+
+
+          <ResourceLink 
+            title="Child Sexual Abuse Prevention"
+            url="https://www.victimscivilattorneys.com/survivors-guide/prevention-support/"
+            description="Prevention support guide for child sexual abuse"
+            />
         </PaperNote>
 
         {/* Immigration Legal Support */}
