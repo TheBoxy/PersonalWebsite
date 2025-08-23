@@ -156,8 +156,7 @@ export default function BlogPostPage() {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric',
-      timeZone: 'UTC'
+      day: 'numeric'
     });
   };
 

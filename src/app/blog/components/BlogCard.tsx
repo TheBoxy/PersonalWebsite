@@ -16,8 +16,7 @@ export default function BlogCard({ post }: BlogCardProps) {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric',
-      timeZone: 'UTC'
+      day: 'numeric'
     });
   };
 
