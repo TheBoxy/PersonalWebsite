@@ -11,31 +11,37 @@ interface Tab {
   gridColor: string;
 }
 
-// Define consistent tab colors to prevent hydration mismatches
+// 🎃 Halloween spooky tab colors - matching the border colors
 const tabs: Tab[] = [
   { 
     name: 'Home', 
     path: '/', 
-    color: '#ff7eb9',
-    gridColor: '#ff7eb9'
+    color: '#FF6600',
+    gridColor: '#FF6600'
   },
   { 
     name: 'Blog', 
     path: '/blog', 
-    color: '#7afcff',
-    gridColor: '#7afcff'
+    color: '#9932CC',
+    gridColor: '#9932CC'
   },
   { 
     name: 'Projects', 
     path: '/projects', 
-    color: '#52b788',
-    gridColor: '#52b788'
+    color: '#FF8C00',
+    gridColor: '#FF8C00'
+  },
+  { 
+    name: 'Music', 
+    path: '/music', 
+    color: '#FF1493',
+    gridColor: '#FF1493'
   },
   { 
     name: 'Resources', 
     path: '/resources', 
-    color: '#f9e79f',
-    gridColor: '#f9e79f'
+    color: '#6A0DAD',
+    gridColor: '#6A0DAD'
   },
 ];
 
@@ -63,6 +69,18 @@ export default function FolderNavigation() {
 
   // Only show connector when mounted and we have a valid active tab
   const displayActiveTab = mounted && activeTab ? activeTab : null;
+
+  // Don't render tabs until client-side to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <>
+        <div className="w-full flex relative z-10 mb-0 overflow-x-auto" style={{ paddingLeft: '8px', paddingRight: '16px', paddingTop: '20px', height: '60px' }}>
+          {/* Placeholder during SSR */}
+        </div>
+        <div className="relative w-full h-12 z-[5]" style={{ backgroundColor: 'transparent' }} />
+      </>
+    );
+  }
 
   return (
     <>

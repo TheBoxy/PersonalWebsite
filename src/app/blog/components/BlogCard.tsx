@@ -25,12 +25,12 @@ export default function BlogCard({ post }: BlogCardProps) {
   return (
     <article className="group">
       <Link href={`/blog/${post.slug}`}>
-        <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border-l-4 border-cyan-400 hover:border-cyan-600 overflow-hidden">
+        <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border-l-4 border-orange-400 hover:border-purple-600 overflow-hidden relative">
           <div className="relative">
             <div className={`flex ${hasValidImage ? 'gap-4' : ''}`}>
               <div className={hasValidImage ? "flex-1 p-6 pr-2" : "p-4"}>
                 <div className="mb-4">
-                  <h2 className="text-xl font-bold text-gray-900 group-hover:text-cyan-600 transition-colors duration-300 mb-2">
+                  <h2 className="text-xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors duration-300 mb-2">
                     {post.title}
                   </h2>
                   <div className="flex items-center text-sm text-gray-500 mb-3">
@@ -50,7 +50,7 @@ export default function BlogCard({ post }: BlogCardProps) {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-block bg-cyan-100 text-cyan-800 text-xs px-2 py-1 rounded-full"
+                      className="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full border border-purple-200"
                     >
                       {tag}
                     </span>
@@ -81,7 +81,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             
             {/* Read more section positioned absolutely at bottom right */}
             <div className="absolute bottom-4 right-6 flex items-center gap-2">
-              <div className="text-cyan-600 group-hover:text-cyan-800 transition-colors duration-300 font-medium">
+              <div className="text-orange-600 group-hover:text-purple-800 transition-colors duration-300 font-medium">
                 Read more →
               </div>
               {post.mediumUrl && (

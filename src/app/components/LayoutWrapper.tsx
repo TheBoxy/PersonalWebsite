@@ -63,11 +63,13 @@ type TabColorData = {
   gridColor: string;
 };
 
+// 🎃 Halloween spooky border colors
 const TAB_COLORS: Record<string, TabColorData> = {
-  '/': { borderColor: '#ff7eb9', gridColor: '#ffd1e6' },
-  '/blog': { borderColor: '#7afcff', gridColor: '#d9feff' },
-  '/projects': { borderColor: '#52b788', gridColor: '#d4edda' },
-  '/resources': { borderColor: '#f9e79f', gridColor: '#fef9e7' },
+  '/': { borderColor: '#FF6600', gridColor: '#ffd1e6' },
+  '/blog': { borderColor: '#9932CC', gridColor: '#d9feff' },
+  '/projects': { borderColor: '#FF8C00', gridColor: '#d4edda' },
+  '/resources': { borderColor: '#6A0DAD', gridColor: '#fef9e7' },
+  '/music': { borderColor: '#FF1493', gridColor: '#ffe6f5' },
 };
 
 const getTabColor = (pathname: string) => {
@@ -82,6 +84,8 @@ const getTabColor = (pathname: string) => {
     tabData = TAB_COLORS['/projects'];
   } else if (pathname.startsWith('/resources')) {
     tabData = TAB_COLORS['/resources'];
+  } else if (pathname.startsWith('/music')) {
+    tabData = TAB_COLORS['/music'];
   }
   
   return { 
