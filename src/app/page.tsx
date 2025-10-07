@@ -207,25 +207,6 @@ export default function HomePage() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  const addRandomMagnet = () => {
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const randomLetter = letters[Math.floor(Math.random() * letters.length)];
-    const newId = `random-${Date.now()}`;
-    
-    // Responsive positioning for random letters
-    const isMobile = window.innerWidth < 768;
-    const letterSize = isMobile ? 48 : 96; // Approximate letter size
-    const margin = isMobile ? 20 : 100;
-    
-    const newMagnet = {
-      id: newId,
-      letter: randomLetter,
-      color: getColor(randomLetter, magnets.length),
-      x: Math.random() * (window.innerWidth - letterSize - margin) + margin/2,
-      y: Math.random() * (window.innerHeight - letterSize - margin) + margin,
-    };
-    setMagnets([...magnets, newMagnet]);
-  };
 
 
 
