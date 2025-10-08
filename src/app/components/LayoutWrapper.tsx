@@ -89,9 +89,9 @@ const getTabColor = (pathname: string) => {
   }
   
   return { 
-    backgroundColor: 'linear-gradient(135deg, #87CEEB 0%, #B0E0E6 50%, #D0E7FF 100%)', // Sky blue gradient
+    backgroundColor: 'linear-gradient(135deg, #0a0e27 0%, #1a1540 30%, #2d1b4e 60%, #1a0b2e 100%)', // 🎃 Spooky night sky gradient
     borderColor: tabData.borderColor, // Border matches the tab
-    gridColor: 'rgba(255, 255, 255, 0.3)' // Subtle white grid
+    gridColor: 'rgba(138, 43, 226, 0.15)' // 🎃 Subtle purple grid for spooky effect
   };
 };
 
@@ -171,6 +171,23 @@ export default function LayoutWrapper({
           zIndex: -1
         }}
       >
+        {/* Stars twinkling effect */}
+        <div className="absolute inset-0 overflow-hidden">
+          {mounted && [...Array(50)].map((_, i) => (
+            <div
+              key={`star-${i}`}
+              className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: Math.random() * 0.8 + 0.2,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 2}s`,
+              }}
+            />
+          ))}
+        </div>
+
         <div
           className="absolute inset-0"
           style={{
@@ -182,7 +199,7 @@ export default function LayoutWrapper({
           }}
         />
         
-        {/* Floating Clouds */}
+        {/* Ghostly Clouds */}
         <div className="absolute inset-0 overflow-hidden">
           {mounted && cloudPositions.map((cloud, index) => (
             <div
@@ -192,8 +209,9 @@ export default function LayoutWrapper({
                 left: '-150px',
                 top: cloud.top,
                 '--cloud-scale': cloud.scale,
-                '--cloud-opacity': cloud.opacity,
+                '--cloud-opacity': cloud.opacity * 0.3,
                 animationDelay: cloud.animationDelay,
+                filter: 'brightness(0.4) opacity(0.6)',
               } as React.CSSProperties}
             >
               <cloud.CloudComponent />
