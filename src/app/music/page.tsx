@@ -25,11 +25,39 @@ interface YouTubePlayer {
   isMuted: () => boolean;
   mute: () => void;
   unMute: () => void;
+  destroy?: () => void;
+}
+
+interface YouTubePlayerEvent {
+  target: YouTubePlayer & {
+    getDuration: () => number;
+    setVolume: (volume: number) => void;
+    playVideo: () => void;
+  };
+  data?: number;
+}
+
+interface YT {
+  Player: new (elementId: string, config: {
+    videoId: string;
+    width: string;
+    height: string;
+    playerVars: Record<string, number>;
+    events: {
+      onReady: (event: YouTubePlayerEvent) => void;
+      onStateChange: (event: YouTubePlayerEvent) => void;
+    };
+  }) => YouTubePlayer;
+  PlayerState: {
+    PLAYING: number;
+    PAUSED: number;
+    ENDED: number;
+  };
 }
 
 declare global {
   interface Window {
-    YT: any;
+    YT: YT;
     onYouTubeIframeAPIReady: () => void;
   }
 }
@@ -106,7 +134,7 @@ export default function MusicPage() {
             modestbranding: 1
           },
           events: {
-            onReady: (event: any) => {
+            onReady: (event: YouTubePlayerEvent) => {
               const dur = event.target.getDuration();
               setDuration(dur);
               // Set initial volume
@@ -115,7 +143,7 @@ export default function MusicPage() {
               setIsPlaying(true);
               startProgressTracking();
             },
-            onStateChange: (event: any) => {
+            onStateChange: (event: YouTubePlayerEvent) => {
               if (event.data === window.YT.PlayerState.PLAYING) {
                 setIsPlaying(true);
                 const dur = event.target.getDuration();
@@ -144,10 +172,10 @@ export default function MusicPage() {
 
     return () => {
       stopProgressTracking();
-      if (playerRef.current && typeof (playerRef.current as any).destroy === 'function') {
+      if (playerRef.current && typeof playerRef.current.destroy === 'function') {
         try {
-          (playerRef.current as any).destroy();
-        } catch (e) {
+          playerRef.current.destroy();
+        } catch {
           // Ignore cleanup errors
         }
       }
@@ -183,7 +211,7 @@ export default function MusicPage() {
           if (Math.abs(playerVolume - volume) > 1) {
             setVolume(Math.round(playerVolume));
           }
-        } catch (error) {
+        } catch {
           // Player might not be ready yet
         }
       }
@@ -338,7 +366,7 @@ export default function MusicPage() {
           // If player volume is 0, set to 75%
           handleVolumeChange(75);
         }
-      } catch (error) {
+      } catch {
         // Fallback if can't get volume
         if (volume === 0) {
           handleVolumeChange(75);
