@@ -66,7 +66,7 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="bg-black text-orange-400 font-mono -m-8 min-h-[calc(100vh-140px)] rounded-lg overflow-hidden border-2 border-orange-400 shadow-2xl shadow-orange-400/50 relative">
+    <div className="bg-black text-orange-400 font-mono h-full overflow-hidden border-2 border-orange-400 shadow-2xl shadow-orange-400/50 relative">
       {/* 🎃 Halloween Decorations */}
       <div className="absolute top-4 left-4 text-3xl z-50 pointer-events-none animate-bounce" style={{ animationDuration: '2s' }}>
         🎃

@@ -149,6 +149,15 @@ body::before {
   animation: bat-fly 8s ease-in-out infinite;
 }
 
+/* LED scrolling banner animation */
+@keyframes scroll-banner {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
 
 /* Blog-specific styles */
 .line-clamp-3 {

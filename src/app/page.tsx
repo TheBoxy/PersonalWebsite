@@ -394,9 +394,9 @@ export default function HomePage() {
         
       </div>
 
-      {/* Mystery button - Halloween themed - links to YouTube Shorts */}
+     
       <button
-        onClick={() => window.open('https://www.youtube.com/shorts/W5mvNfFXUi8', '_blank')}
+        onClick={() => window.open('https://www.tiktok.com/@the_real_elgatitolover/video/7559325082879855927?q=halloween%20memes&t=1760477064374', '_blank')}
         className="fixed bottom-4 right-6 md:bottom-8 md:right-10 bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-full shadow-lg transition-colors z-10 border-2 border-purple-400"
       >
         🎃 Mystery 👻

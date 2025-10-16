@@ -235,7 +235,7 @@ export default function LayoutWrapper({
       >
         <main 
           ref={mainContentRef} 
-          className="relative z-10 p-8 h-full overflow-auto rounded-lg"
+          className={`relative z-10 h-full overflow-auto ${(pathname === '/music' || pathname === '/projects') ? '' : 'p-8 rounded-lg'}`}
         >
           {children}
         </main>
