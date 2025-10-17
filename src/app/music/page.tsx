@@ -504,9 +504,9 @@ export default function MusicPage() {
           }}
         >
           {/* Left Section - Video Player */}
-          <div className="flex-1 flex flex-col md:min-h-0">
+          <div className="flex-none md:flex-1 flex flex-col md:min-h-0">
             {/* Video Display Area */}
-            <div className="flex-1 bg-black flex items-center justify-center relative aspect-video md:aspect-auto md:min-h-0"
+            <div className="w-full h-[35vh] md:h-auto md:flex-1 bg-black flex items-center justify-center relative"
               style={{
                 boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.8)'
               }}
@@ -589,9 +589,9 @@ export default function MusicPage() {
             </div>
 
             {/* Now Playing Info Bar */}
-            <div className="px-4 py-2 bg-gradient-to-b from-gray-700 to-gray-800 border-t border-gray-900">
+            <div className="px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-b from-gray-700 to-gray-800 border-t border-gray-900">
               <div 
-                className={`text-white text-xs truncate ${currentVideo ? 'hover:underline cursor-pointer' : ''}`}
+                className={`text-white text-[10px] md:text-xs truncate ${currentVideo ? 'hover:underline cursor-pointer' : ''}`}
                 style={{ fontFamily: 'Tahoma, sans-serif' }}
                 onClick={() => currentVideo && window.open(`https://www.youtube.com/watch?v=${currentVideo}`, '_blank')}
                 title={currentVideo ? "Open in YouTube" : ""}
@@ -602,15 +602,15 @@ export default function MusicPage() {
           </div>
 
           {/* Right Sidebar - Playlist */}
-          <div className="w-full md:w-96 flex flex-col border-l-2 border-t-2 md:border-t-0 border-gray-700 flex-shrink-0 h-64 md:h-auto md:max-h-full">
+          <div className="w-full md:w-96 flex-1 md:flex-initial flex flex-col md:border-l-2 border-t-2 md:border-t-0 border-gray-700 overflow-hidden">
             {/* Playlist Header */}
-            <div className="px-3 py-2.5"
+            <div className="px-2 md:px-3 py-1.5 md:py-2.5"
               style={{
                 background: 'linear-gradient(180deg, #4A9EDE 0%, #1C68A8 50%, #0F4C85 100%)',
                 borderBottom: '1px solid #083D6B'
               }}
             >
-              <h3 className="text-white text-sm font-bold drop-shadow" style={{ fontFamily: 'Tahoma, sans-serif' }}>
+              <h3 className="text-white text-xs md:text-sm font-bold drop-shadow" style={{ fontFamily: 'Tahoma, sans-serif' }}>
                 Songs List
               </h3>
             </div>
@@ -618,7 +618,8 @@ export default function MusicPage() {
             {/* Playlist Items */}
             <div className="flex-1 overflow-y-auto bg-white min-h-0"
             style={{
-                backgroundImage: 'linear-gradient(to bottom, #FFFFFF 0%, #F0F0F0 100%)'
+                backgroundImage: 'linear-gradient(to bottom, #FFFFFF 0%, #F0F0F0 100%)',
+                WebkitOverflowScrolling: 'touch'
               }}
             >
               {loading ? (
@@ -634,7 +635,7 @@ export default function MusicPage() {
                   {videos.map((video, index) => (
                     <div
                       key={video.id.videoId}
-                      className={`px-2 py-2 cursor-pointer border-b border-gray-200 transition-colors ${
+                      className={`px-2 py-2.5 md:py-2 cursor-pointer border-b border-gray-200 transition-colors ${
                         currentVideo === video.id.videoId 
                           ? 'bg-blue-100 border-l-4 border-l-blue-600' 
                           : 'hover:bg-blue-50'
@@ -643,7 +644,7 @@ export default function MusicPage() {
                       style={{ fontFamily: 'Tahoma, sans-serif' }}
                     >
                       <div className="flex items-center gap-2">
-                        <span className={`text-xs font-bold min-w-[20px] flex-shrink-0 ${
+                        <span className={`text-xs font-bold min-w-[18px] md:min-w-[20px] flex-shrink-0 ${
                           currentVideo === video.id.videoId ? 'text-blue-600' : 'text-gray-400'
                         }`}>
                           {currentVideo === video.id.videoId ? '▶' : `${index + 1}.`}
@@ -651,10 +652,10 @@ export default function MusicPage() {
                         <img 
                           src={video.snippet.thumbnails.medium.url}
                           alt={video.snippet.title}
-                          className="w-16 h-12 object-cover rounded flex-shrink-0 border border-gray-300"
+                          className="w-14 h-10 md:w-16 md:h-12 object-cover rounded flex-shrink-0 border border-gray-300"
                         />
                         <div className="flex-1 min-w-0">
-                          <p className={`text-xs leading-tight mb-1 ${
+                          <p className={`text-xs leading-snug mb-1 line-clamp-2 ${
                             currentVideo === video.id.videoId ? 'text-blue-900 font-semibold' : 'text-gray-800'
                           }`}>
                             {video.snippet.title}
