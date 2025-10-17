@@ -90,7 +90,7 @@ export default function ProjectsPage() {
         
         {/* Main terminal container */}
         <div className="bg-black relative overflow-hidden h-full">
-          <div className="p-6 h-full">
+          <div className="p-6 h-full overflow-y-auto">
           {/* Terminal header - Halloween themed */}
           <div className="flex items-center justify-between mb-6 border-b border-orange-400 pb-4">
             <div className="flex items-center space-x-2">
@@ -121,7 +121,7 @@ export default function ProjectsPage() {
           </div>
 
           {/* Projects grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-4">
             {projects.map((project) => (
               <div
                 key={project.id}

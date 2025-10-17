@@ -433,9 +433,9 @@ export default function MusicPage() {
         </div>
       </div>
 
-        {/* LED Scrolling Banner */}
+        {/* LED Scrolling Banner - smaller on mobile */}
         <div 
-          className="py-2 overflow-hidden relative"
+          className="py-0.5 md:py-2 overflow-hidden relative"
           style={{
             background: 'linear-gradient(180deg, #0a0a15 0%, #000000 50%, #0a0a15 100%)',
             borderTop: '2px solid #1a1a2e',
@@ -450,7 +450,7 @@ export default function MusicPage() {
             }}
           >
             <span 
-              className="text-lg md:text-2xl font-bold tracking-wider"
+              className="text-xs md:text-2xl font-bold tracking-wider"
               style={{ 
                 fontFamily: 'Courier New, monospace',
                 background: 'linear-gradient(90deg, #FFB5E8 0%, #B5DEFF 15%, #FFDDB5 30%, #D5AAFF 45%, #B5FFB9 60%, #FFD5B5 75%, #FFB5E8 90%, #B5DEFF 100%)',
@@ -465,7 +465,7 @@ export default function MusicPage() {
               ★★★ MORE MUSIC COMING SOON!!! ★★★&nbsp;&nbsp;&nbsp;&nbsp;
             </span>
             <span 
-              className="text-lg md:text-2xl font-bold tracking-wider"
+              className="text-xs md:text-2xl font-bold tracking-wider"
               style={{ 
                 fontFamily: 'Courier New, monospace',
                 background: 'linear-gradient(90deg, #FFB5E8 0%, #B5DEFF 15%, #FFDDB5 30%, #D5AAFF 45%, #B5FFB9 60%, #FFD5B5 75%, #FFB5E8 90%, #B5DEFF 100%)',
@@ -480,7 +480,7 @@ export default function MusicPage() {
               ★★★ MORE MUSIC COMING SOON!!! ★★★&nbsp;&nbsp;&nbsp;&nbsp;
             </span>
             <span 
-              className="text-lg md:text-2xl font-bold tracking-wider"
+              className="text-xs md:text-2xl font-bold tracking-wider"
               style={{ 
                 fontFamily: 'Courier New, monospace',
                 background: 'linear-gradient(90deg, #FFB5E8 0%, #B5DEFF 15%, #FFDDB5 30%, #D5AAFF 45%, #B5FFB9 60%, #FFD5B5 75%, #FFB5E8 90%, #B5DEFF 100%)',
@@ -504,9 +504,9 @@ export default function MusicPage() {
           }}
         >
           {/* Left Section - Video Player */}
-          <div className="flex-1 flex flex-col min-h-0">
+          <div className="flex-1 flex flex-col md:min-h-0">
             {/* Video Display Area */}
-            <div className="flex-1 bg-black flex items-center justify-center relative min-h-0"
+            <div className="flex-1 bg-black flex items-center justify-center relative aspect-video md:aspect-auto md:min-h-0"
               style={{
                 boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.8)'
               }}
@@ -602,7 +602,7 @@ export default function MusicPage() {
           </div>
 
           {/* Right Sidebar - Playlist */}
-          <div className="w-full md:w-96 flex flex-col border-l-2 border-gray-700 max-h-80 md:max-h-full">
+          <div className="w-full md:w-96 flex flex-col border-l-2 border-t-2 md:border-t-0 border-gray-700 flex-shrink-0 h-64 md:h-auto md:max-h-full">
             {/* Playlist Header */}
             <div className="px-3 py-2.5"
               style={{
