@@ -380,17 +380,6 @@ export default function MusicPage() {
 
   return (
     <div className="h-full w-full flex flex-col overflow-hidden relative">
-      {/* 🎃 Halloween Decorations */}
-      <div className="absolute top-4 left-4 text-3xl z-50 pointer-events-none animate-bounce" style={{ animationDuration: '2s' }}>
-        🎃
-      </div>
-      <div className="absolute top-4 right-4 text-3xl z-50 pointer-events-none animate-pulse" style={{ animationDuration: '3s' }}>
-        🦇
-      </div>
-      <div className="absolute bottom-20 right-4 text-3xl z-50 pointer-events-none" style={{ animation: 'float 5s ease-in-out infinite' }}>
-        🎃
-      </div>
-      
       <div className="h-full flex flex-col overflow-hidden"
         style={{
           background: 'linear-gradient(180deg, #0C5A9E 0%, #1B5A9C 50%, #0D3D6B 100%)'
@@ -824,12 +813,8 @@ export default function MusicPage() {
         </div>
       </div>
 
-      {/* Halloween Animation Styles */}
+      {/* Animation Styles */}
       <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
         @keyframes scroll-banner {
           0% { transform: translateX(0); }
           100% { transform: translateX(-33.333%); }

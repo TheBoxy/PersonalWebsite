@@ -8,40 +8,34 @@ interface Tab {
   name: string;
   path: string;
   color: string;
-  gridColor: string;
 }
 
-// 🎃 Halloween spooky tab colors - matching the border colors
+// Original tab colors
 const tabs: Tab[] = [
   { 
     name: 'Home', 
     path: '/', 
-    color: '#FF6600',
-    gridColor: '#FF6600'
+    color: '#FF6B6B'
   },
   { 
     name: 'Blog', 
     path: '/blog', 
-    color: '#9932CC',
-    gridColor: '#9932CC'
+    color: '#4ECDC4'
   },
   { 
     name: 'Projects', 
     path: '/projects', 
-    color: '#FF8C00',
-    gridColor: '#FF8C00'
+    color: '#45B7D1'
   },
   { 
     name: 'Music', 
     path: '/music', 
-    color: '#FF1493',
-    gridColor: '#FF1493'
+    color: '#9B59B6'
   },
   { 
     name: 'Resources', 
     path: '/resources', 
-    color: '#6A0DAD',
-    gridColor: '#6A0DAD'
+    color: '#98D8C8'
   },
 ];
 
@@ -103,18 +97,6 @@ export default function FolderNavigation() {
                 borderBottom: isActive ? 'none' : '1px solid rgba(0,0,0,0.1)',
               }}
             >
-              <div className="absolute inset-0 rounded-t-lg overflow-hidden">
-                <div
-                  className={`absolute inset-0 ${isActive ? 'opacity-50' : 'opacity-30'}`}
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, 
-                      ${tab.gridColor} 1px, transparent 1px),
-                      linear-gradient(${tab.gridColor} 1px, transparent 1px)`,
-                    backgroundSize: '15px 15px'
-                  }}
-                />
-              </div>
-              
               {/* Curved ramps at bottom */}
               <div 
                 className="absolute bottom-0 left-[-8px] w-4 h-4"
@@ -148,22 +130,7 @@ export default function FolderNavigation() {
             borderTopRightRadius: '8px',
             boxShadow: '0 -10px 10px -2px rgba(0,0,0,0.4)'
           }}
-        >
-          {/* Grid pattern for the connector */}
-          <div
-            className="absolute inset-0 opacity-50"
-            style={{
-              backgroundImage: `linear-gradient(90deg, 
-                ${displayActiveTab.gridColor} 1px, transparent 1px),
-                linear-gradient(${displayActiveTab.gridColor} 1px, transparent 1px)`,
-              backgroundSize: '15px 15px',
-              borderTopLeftRadius: '8px',
-              borderTopRightRadius: '8px'
-            }}
-          />
-          
-
-        </div>
+        />
       )}
     </>
   );

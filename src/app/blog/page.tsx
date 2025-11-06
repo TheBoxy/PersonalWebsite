@@ -95,17 +95,9 @@ export default function BlogPage() {
   if (loading) {
     return (
       <div className="space-y-8 relative">
-        {/* 🎃 Halloween Decorations */}
-        <div className="fixed top-5 left-5 text-4xl animate-bounce z-40 pointer-events-none" style={{ animationDuration: '2s' }}>
-          🎃
-        </div>
-        <div className="fixed top-5 right-5 text-4xl animate-bat-fly z-40 pointer-events-none" style={{ animationDuration: '9s' }}>
-          🦇
-        </div>
-        
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            🎃 KBlog 👻
+            KBlog
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Thoughts on random things I find interesting. These are posted on my Medium.com account.
@@ -115,7 +107,7 @@ export default function BlogPage() {
         <div className="grid gap-8 md:gap-6">
           {/* Loading skeleton */}
           {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-white rounded-lg shadow-md p-6 border-l-4 border-orange-400 animate-pulse">
+            <div key={i} className="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-400 animate-pulse">
               <div className="h-6 bg-gray-200 rounded mb-4"></div>
               <div className="h-4 bg-gray-200 rounded mb-2"></div>
               <div className="h-4 bg-gray-200 rounded w-2/3"></div>
@@ -129,17 +121,9 @@ export default function BlogPage() {
   if (error) {
     return (
       <div className="space-y-8 relative">
-        {/* 🎃 Halloween Decorations */}
-        <div className="fixed top-5 left-5 text-4xl animate-bounce z-40 pointer-events-none" style={{ animationDuration: '2s' }}>
-          🎃
-        </div>
-        <div className="fixed top-5 right-5 text-4xl animate-bat-fly z-40 pointer-events-none" style={{ animationDuration: '9s' }}>
-          🦇
-        </div>
-        
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            🎃 KBlog 👻
+            KBlog
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Thoughts on random things I find interesting. These are posted on my Medium.com account.
@@ -153,7 +137,7 @@ export default function BlogPage() {
           <button 
             onClick={handleRefresh}
             disabled={refreshing}
-            className="bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2 mx-auto border-2 border-purple-300"
+            className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2 mx-auto"
           >
             <svg 
               className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} 
@@ -177,30 +161,16 @@ export default function BlogPage() {
 
   return (
     <div className="space-y-8 relative">
-      {/* 🎃 Halloween Decorations for Blog */}
-      <div className="fixed top-5 left-5 text-4xl animate-bounce z-40 pointer-events-none" style={{ animationDuration: '2s' }}>
-        🎃
-      </div>
-      <div className="fixed top-5 right-5 text-4xl animate-bat-fly z-40 pointer-events-none" style={{ animationDuration: '9s' }}>
-        🦇
-      </div>
-      <div className="fixed bottom-10 left-10 text-3xl animate-float z-40 pointer-events-none" style={{ animationDuration: '4s' }}>
-        👻
-      </div>
-      <div className="fixed bottom-10 right-10 text-3xl z-40 pointer-events-none">
-        🕷️
-      </div>
-      
       <div className="text-center">
         <div className="flex items-center justify-center gap-4 mb-4">
           <h1 className="text-4xl font-bold text-gray-900">
-            🎃 KBlog 👻
+            KBlog
           </h1>
           <div className="flex items-center gap-2">
             <button
               onClick={handleRefresh}
               disabled={refreshing}
-              className="bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 text-white px-3 py-1 rounded-lg transition-colors text-sm flex items-center gap-2 border-2 border-purple-300"
+              className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white px-3 py-1 rounded-lg transition-colors text-sm flex items-center gap-2"
               title="Refresh blog posts"
             >
               <svg 

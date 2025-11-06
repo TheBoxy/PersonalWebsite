@@ -4,20 +4,20 @@ import Image from "next/image";
 import { useState, useEffect } from 'react';
 import Magnet from './components/Magnet';
 
-// 🎃 Halloween Colors - Orange and Purple themed
+// Original color palette
 const COLORS = [
-  '#FF6600', // Halloween orange
-  '#9932CC', // Dark orchid (purple)
-  '#FF4500', // Orange red
-  '#8B00FF', // Electric purple
-  '#FF8C00', // Dark orange
-  '#6A0DAD', // Deep purple
-  '#FFA500', // Pure orange
-  '#4B0082', // Indigo
-  '#FF7F00', // Bright orange
-  '#9400D3', // Dark violet
-  '#FF6347', // Tomato
-  '#8A2BE2', // Blue violet
+  '#FF6B6B', // Coral red
+  '#4ECDC4', // Turquoise
+  '#45B7D1', // Sky blue
+  '#FFA07A', // Light salmon
+  '#98D8C8', // Mint green
+  '#F7DC6F', // Bright yellow
+  '#BB8FCE', // Lavender
+  '#85C1E2', // Light blue
+  '#F8B88B', // Peach
+  '#52B788', // Green
+  '#FFB6C1', // Light pink
+  '#87CEEB', // Sky blue
 ];
 
 const INITIAL_TEXT = 'welcome to kevin\'s site';
@@ -211,51 +211,9 @@ export default function HomePage() {
 
 
   return (
-    <div className="space-y-3 relative">
-      {/* 🎃 Halloween Decorations */}
-      {/* Flying Bats - more movement, all start together */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-50">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={`bat-${i}`}
-            className="absolute text-4xl animate-bat-fly"
-            style={{
-              left: `${(i * 12) + 5}%`,
-              top: `${(i % 3) * 25 + 10}%`,
-              animationDuration: `${8 + (i % 3) * 2}s`,
-            }}
-          >
-            🦇
-          </div>
-        ))}
-      </div>
-
-      {/* Floating Pumpkins in corners */}
-      <div className="fixed top-4 left-4 text-5xl animate-bounce z-40 pointer-events-none" style={{ animationDuration: '3s' }}>
-        🎃
-      </div>
-      <div className="fixed top-4 right-4 text-5xl animate-bounce z-40 pointer-events-none" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
-        🎃
-      </div>
-
-      {/* Spider Web corners */}
-      <div className="fixed top-0 left-0 text-6xl opacity-70 pointer-events-none z-40">
-        🕸️
-      </div>
-      <div className="fixed top-0 right-0 text-6xl opacity-70 pointer-events-none z-40 transform scale-x-[-1]">
-        🕸️
-      </div>
-
-      {/* Ghost floating */}
-      <div className="fixed bottom-20 left-10 text-4xl animate-float pointer-events-none z-40" style={{ animationDuration: '3s' }}>
-        👻
-      </div>
-      <div className="fixed bottom-32 right-20 text-4xl animate-float pointer-events-none z-40" style={{ animationDuration: '4s', animationDelay: '1s' }}>
-        👻
-      </div>
-
-            {/* Magnet container with relative positioning */}
-      <div className="relative" style={{ minHeight: windowWidth < 768 ? '340px' : '320px' }}>
+    <div className="relative">
+      {/* Magnet container with relative positioning */}
+      <div className="relative mb-12" style={{ minHeight: windowWidth < 768 ? '280px' : '240px' }}>
         {magnets.map((magnet) => (
           <Magnet
             key={magnet.id}
@@ -266,20 +224,16 @@ export default function HomePage() {
           />
         ))}
         
-        {/* Halloween Orange separator line */}
+        {/* Decorative separator bar */}
         {windowWidth > 0 && (
           <div 
-            className="absolute left-0 right-0 h-2 bg-orange-500 rounded-full"
+            className="absolute left-0 right-0 h-2 rounded-full"
             style={{
-              top: windowWidth < 768 ? '320px' : '300px', // Responsive positioning - reduced white space on both mobile and desktop
-              marginLeft: windowWidth < 768 ? '5px' : '20px', // Even longer line on mobile
-              marginRight: windowWidth < 768 ? '5px' : '20px', // Even longer line on mobile
-              boxShadow: `
-                0 0 10px rgba(255, 102, 0, 0.7),
-                0 0 20px rgba(255, 102, 0, 0.5),
-                0 0 30px rgba(255, 102, 0, 0.3),
-                0 4px 8px rgba(0, 0, 0, 0.1)
-              `, // Halloween orange glow effect
+              bottom: '-35px',
+              marginLeft: windowWidth < 768 ? '10px' : '40px',
+              marginRight: windowWidth < 768 ? '10px' : '40px',
+              background: '#45B7D1',
+              boxShadow: '0 0 20px rgba(69, 183, 209, 0.8), 0 0 40px rgba(69, 183, 209, 0.5), 0 0 60px rgba(69, 183, 209, 0.3)',
             }}
           />
         )}
@@ -289,15 +243,12 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto">
         {/* Profile and About Side by Side */}
         <div className="flex flex-col lg:flex-row gap-6">
-          {/* Profile Header - Halloween themed */}
-          <div className="lg:w-1/3 bg-gradient-to-r from-orange-50 to-purple-50 rounded-2xl p-6 md:p-8 shadow-lg border-2 border-orange-300 relative overflow-hidden">
-            {/* Decorative pumpkins */}
-            <div className="absolute top-2 right-2 text-2xl">🎃</div>
-            <div className="absolute bottom-2 left-2 text-xl">🕷️</div>
+          {/* Profile Header */}
+          <div className="lg:w-1/3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 md:p-8 shadow-lg border-2 border-blue-300 relative overflow-hidden">
             <div className="flex flex-col items-center text-center">
               {/* Profile Picture */}
               <div className="mb-6">
-                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-white p-1 shadow-lg border-4 border-orange-300 overflow-hidden">
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-white p-1 shadow-lg border-4 border-blue-300 overflow-hidden">
                   <Image 
                     src="/images/photo.jpg" 
                     alt="Kevin Martinez" 
@@ -318,13 +269,17 @@ export default function HomePage() {
                   Kevin Martinez
                 </h1>
                 
-                {/* Tags - Halloween themed */}
+                {/* Tags */}
                 <div className="mb-6 flex flex-wrap gap-2 justify-center">
-                  <span className="inline-block bg-gradient-to-r from-orange-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-orange-300/50 tracking-wide">
-                    Human 👻
+                  <span className="inline-block bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-blue-300/50 tracking-wide">
+                    Human 👤
                   </span>
-                  <span className="inline-block bg-gradient-to-r from-purple-500 to-orange-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-purple-300/50 tracking-wide">
-                    Mexican 🎃
+                  <span 
+                    className="inline-block bg-gradient-to-r from-cyan-500 to-teal-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-cyan-300/50 tracking-wide cursor-pointer hover:scale-105 transition-transform"
+                    onClick={() => window.open('https://www.youtube.com/watch?v=b89CnP0Iq30', '_blank')}
+                    title="Click to learn more! 🇲🇽"
+                  >
+                    Mexican 🇲🇽
                   </span>
                 </div>
                 
@@ -339,12 +294,8 @@ export default function HomePage() {
             </div>
           </div>
           
-          {/* About Section - Halloween themed */}
-          <div className="lg:w-2/3 bg-white rounded-2xl p-6 md:p-8 shadow-lg border-2 border-orange-200 relative overflow-hidden">
-            {/* Decorative Halloween elements */}
-            <div className="absolute top-2 left-2 text-2xl">🕸️</div>
-            <div className="absolute top-2 right-2 text-2xl">🦇</div>
-            <div className="absolute bottom-2 right-2 text-xl">🍬</div>
+          {/* About Section */}
+          <div className="lg:w-2/3 bg-white rounded-2xl p-6 md:p-8 shadow-lg border-2 border-blue-200 relative overflow-hidden">
             <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2 underline">
               
               About This Digital Folder
@@ -364,10 +315,10 @@ export default function HomePage() {
               </p>
     </div>
     
-            {/* Call to Action - Halloween themed */}
-            <div className="mt-6 p-4 bg-gradient-to-r from-orange-50 to-purple-50 rounded-xl border border-orange-300">
+            {/* Call to Action */}
+            <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-300">
               <p className="text-center text-gray-700 font-medium">
-                🎃 <strong>Explore the folders above</strong> to discover my latest projects, thoughts, and resources! 👻
+                📂 <strong>Explore the folders above</strong> to discover my latest projects, thoughts, and resources! 🚀
               </p>
             </div>
             
@@ -393,14 +344,6 @@ export default function HomePage() {
         
         
       </div>
-
-     
-      <button
-        onClick={() => window.open('https://www.tiktok.com/@the_real_elgatitolover/video/7559325082879855927?q=halloween%20memes&t=1760477064374', '_blank')}
-        className="fixed bottom-4 right-6 md:bottom-8 md:right-10 bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-full shadow-lg transition-colors z-10 border-2 border-purple-400"
-      >
-        🎃 Mystery 👻
-      </button>
     </div>
   );
 }
