@@ -400,7 +400,7 @@ export default function MusicPage() {
                 }}
               ></div>
             </div>
-            <span className="text-white text-sm font-bold drop-shadow-md" style={{ fontFamily: 'Tahoma, sans-serif' }}>
+            <span className="text-white text-sm font-bold drop-shadow-md whitespace-nowrap" style={{ fontFamily: 'Tahoma, sans-serif' }}>
               Music Media Player
             </span>
           </div>
@@ -433,69 +433,6 @@ export default function MusicPage() {
         </div>
       </div>
 
-        {/* LED Scrolling Banner - smaller on mobile */}
-        <div 
-          className="py-0.5 md:py-2 overflow-hidden relative"
-          style={{
-            background: 'linear-gradient(180deg, #0a0a15 0%, #000000 50%, #0a0a15 100%)',
-            borderTop: '2px solid #1a1a2e',
-            borderBottom: '2px solid #1a1a2e',
-            boxShadow: 'inset 0 0 20px rgba(147, 197, 253, 0.2), 0 0 10px rgba(147, 197, 253, 0.3)'
-          }}
-        >
-          <div 
-            className="whitespace-nowrap inline-flex"
-            style={{
-              animation: 'scroll-banner 12s linear infinite'
-            }}
-          >
-            <span 
-              className="text-xs md:text-2xl font-bold tracking-wider"
-              style={{ 
-                fontFamily: 'Courier New, monospace',
-                background: 'linear-gradient(90deg, #FFB5E8 0%, #B5DEFF 15%, #FFDDB5 30%, #D5AAFF 45%, #B5FFB9 60%, #FFD5B5 75%, #FFB5E8 90%, #B5DEFF 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                textShadow: 'none',
-                letterSpacing: '0.1em',
-                filter: 'drop-shadow(0 0 8px rgba(255, 181, 232, 0.6)) drop-shadow(0 0 12px rgba(181, 222, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 221, 181, 0.4))'
-              }}
-            >
-              ★★★ MORE MUSIC COMING SOON!!! ★★★&nbsp;&nbsp;&nbsp;&nbsp;
-            </span>
-            <span 
-              className="text-xs md:text-2xl font-bold tracking-wider"
-              style={{ 
-                fontFamily: 'Courier New, monospace',
-                background: 'linear-gradient(90deg, #FFB5E8 0%, #B5DEFF 15%, #FFDDB5 30%, #D5AAFF 45%, #B5FFB9 60%, #FFD5B5 75%, #FFB5E8 90%, #B5DEFF 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                textShadow: 'none',
-                letterSpacing: '0.1em',
-                filter: 'drop-shadow(0 0 8px rgba(255, 181, 232, 0.6)) drop-shadow(0 0 12px rgba(181, 222, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 221, 181, 0.4))'
-              }}
-            >
-              ★★★ MORE MUSIC COMING SOON!!! ★★★&nbsp;&nbsp;&nbsp;&nbsp;
-            </span>
-            <span 
-              className="text-xs md:text-2xl font-bold tracking-wider"
-              style={{ 
-                fontFamily: 'Courier New, monospace',
-                background: 'linear-gradient(90deg, #FFB5E8 0%, #B5DEFF 15%, #FFDDB5 30%, #D5AAFF 45%, #B5FFB9 60%, #FFD5B5 75%, #FFB5E8 90%, #B5DEFF 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                textShadow: 'none',
-                letterSpacing: '0.1em',
-                filter: 'drop-shadow(0 0 8px rgba(255, 181, 232, 0.6)) drop-shadow(0 0 12px rgba(181, 222, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 221, 181, 0.4))'
-              }}
-            >
-              ★★★ MORE MUSIC COMING SOON!!! ★★★&nbsp;&nbsp;&nbsp;&nbsp;
-            </span>
-          </div>
-        </div>
 
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col md:flex-row overflow-hidden"
@@ -506,7 +443,7 @@ export default function MusicPage() {
           {/* Left Section - Video Player */}
           <div className="flex-none md:flex-1 flex flex-col md:min-h-0">
             {/* Video Display Area */}
-            <div className="w-full h-[35vh] md:h-auto md:flex-1 bg-black flex items-center justify-center relative"
+            <div className="w-full aspect-video md:aspect-auto md:h-auto md:flex-1 min-h-[200px] md:min-h-0 bg-black flex items-center justify-center relative"
               style={{
                 boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.8)'
               }}
@@ -602,7 +539,70 @@ export default function MusicPage() {
           </div>
 
           {/* Right Sidebar - Playlist */}
-          <div className="w-full md:w-96 flex-1 md:flex-initial flex flex-col md:border-l-2 border-t-2 md:border-t-0 border-gray-700 overflow-hidden">
+          <div className="w-full md:w-80 flex-1 md:flex-initial flex flex-col md:border-l-2 border-t-2 md:border-t-0 border-gray-700 overflow-hidden">
+            {/* LED Scrolling Banner - smaller on mobile */}
+            <div 
+              className="py-0.5 md:py-1 overflow-hidden relative flex-shrink-0"
+              style={{
+                background: 'linear-gradient(180deg, #0a0a15 0%, #000000 50%, #0a0a15 100%)',
+                borderBottom: '2px solid #1a1a2e',
+                boxShadow: 'inset 0 0 20px rgba(147, 197, 253, 0.2), 0 0 10px rgba(147, 197, 253, 0.3)'
+              }}
+            >
+              <div 
+                className="whitespace-nowrap inline-flex"
+                style={{
+                  animation: 'scroll-banner 12s linear infinite'
+                }}
+              >
+                <span 
+                  className="text-[10px] md:text-sm font-bold tracking-wider"
+                  style={{ 
+                    fontFamily: 'Courier New, monospace',
+                    background: 'linear-gradient(90deg, #FFB5E8 0%, #B5DEFF 15%, #FFDDB5 30%, #D5AAFF 45%, #B5FFB9 60%, #FFD5B5 75%, #FFB5E8 90%, #B5DEFF 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    textShadow: 'none',
+                    letterSpacing: '0.1em',
+                    filter: 'drop-shadow(0 0 8px rgba(255, 181, 232, 0.6)) drop-shadow(0 0 12px rgba(181, 222, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 221, 181, 0.4))'
+                  }}
+                >
+                  ★★★ MORE MUSIC COMING SOON!!! ★★★&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+                <span 
+                  className="text-[10px] md:text-sm font-bold tracking-wider"
+                  style={{ 
+                    fontFamily: 'Courier New, monospace',
+                    background: 'linear-gradient(90deg, #FFB5E8 0%, #B5DEFF 15%, #FFDDB5 30%, #D5AAFF 45%, #B5FFB9 60%, #FFD5B5 75%, #FFB5E8 90%, #B5DEFF 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    textShadow: 'none',
+                    letterSpacing: '0.1em',
+                    filter: 'drop-shadow(0 0 8px rgba(255, 181, 232, 0.6)) drop-shadow(0 0 12px rgba(181, 222, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 221, 181, 0.4))'
+                  }}
+                >
+                  ★★★ MORE MUSIC COMING SOON!!! ★★★&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+                <span 
+                  className="text-[10px] md:text-sm font-bold tracking-wider"
+                  style={{ 
+                    fontFamily: 'Courier New, monospace',
+                    background: 'linear-gradient(90deg, #FFB5E8 0%, #B5DEFF 15%, #FFDDB5 30%, #D5AAFF 45%, #B5FFB9 60%, #FFD5B5 75%, #FFB5E8 90%, #B5DEFF 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    textShadow: 'none',
+                    letterSpacing: '0.1em',
+                    filter: 'drop-shadow(0 0 8px rgba(255, 181, 232, 0.6)) drop-shadow(0 0 12px rgba(181, 222, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 221, 181, 0.4))'
+                  }}
+                >
+                  ★★★ MORE MUSIC COMING SOON!!! ★★★&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              </div>
+            </div>
+
             {/* Playlist Header */}
             <div className="px-2 md:px-3 py-1.5 md:py-2.5"
               style={{

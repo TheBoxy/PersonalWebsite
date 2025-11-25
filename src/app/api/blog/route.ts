@@ -109,9 +109,30 @@ function transformMediumPost(item: RSSItem, index: number) {
 
 export async function GET() {
   try {
-    const feed = await parser.parseURL('https://medium.com/feed/@kevinmartinez7616');
+    // Use rss2json as a proxy to avoid Medium's 403 Forbidden error
+    const RSS2JSON_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://medium.com/feed/@kevinmartinez7616')}`;
     
-    const posts = feed.items.map((item, index) => transformMediumPost(item, index));
+    const feedResponse = await fetch(RSS2JSON_URL, {
+      next: { revalidate: 120 }
+    });
+
+    if (!feedResponse.ok) {
+      throw new Error(`RSS2JSON returned status: ${feedResponse.status}`);
+    }
+
+    const data = await feedResponse.json();
+    
+    if (data.status !== 'ok') {
+      throw new Error('RSS2JSON returned error status');
+    }
+    
+    // Map rss2json items to our expected format
+    const posts = data.items.map((item: any, index: number) => transformMediumPost({
+      ...item,
+      'content:encoded': item.content, // rss2json puts full content in 'content'
+      categories: item.categories || [],
+      isoDate: item.pubDate
+    }, index));
     
     const response = NextResponse.json({
       success: true,

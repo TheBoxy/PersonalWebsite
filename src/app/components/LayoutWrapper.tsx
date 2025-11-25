@@ -239,77 +239,77 @@ export default function LayoutWrapper({
         >
           {children}
         </main>
-        
-        {/* Pile of Fall Leaves - Bottom Left - Asymmetrical - Interactive */}
-        {mounted && (
-          <div className="fixed bottom-0 left-0 z-20" style={{ width: '350px', height: '200px' }}>
-            {/* Create a realistic asymmetrical pile - extending more to the right */}
-            {[
-              // Base layer - mostly center and right
-              { emoji: '🍂', left: '25px', bottom: '5px', rotation: 15, size: '3rem', zIndex: 1 },
-              { emoji: '🍁', left: '60px', bottom: '8px', rotation: -25, size: '3.4rem', zIndex: 2 },
-              { emoji: '🍂', left: '15px', bottom: '18px', rotation: 45, size: '2.8rem', zIndex: 3 },
-              { emoji: '🍁', left: '85px', bottom: '12px', rotation: -15, size: '3.2rem', zIndex: 4 },
-              { emoji: '🍂', left: '110px', bottom: '10px', rotation: 60, size: '3rem', zIndex: 5 },
-              { emoji: '🍁', left: '140px', bottom: '15px', rotation: -35, size: '2.9rem', zIndex: 6 },
-              
-              // Middle layer - more spread out to the right
-              { emoji: '🍂', left: '40px', bottom: '30px', rotation: 20, size: '3.3rem', zIndex: 7 },
-              { emoji: '🍁', left: '70px', bottom: '28px', rotation: -50, size: '3.1rem', zIndex: 8 },
-              { emoji: '🍂', left: '100px', bottom: '25px', rotation: 35, size: '2.8rem', zIndex: 9 },
-              { emoji: '🍁', left: '130px', bottom: '30px', rotation: -10, size: '3rem', zIndex: 10 },
-              { emoji: '🍂', left: '160px', bottom: '22px', rotation: 55, size: '3.2rem', zIndex: 11 },
-              { emoji: '🍁', left: '185px', bottom: '18px', rotation: -40, size: '2.9rem', zIndex: 12 },
-              
-              // Upper layer - fewer leaves, still extending right
-              { emoji: '🍂', left: '50px', bottom: '48px', rotation: 25, size: '3.1rem', zIndex: 13 },
-              { emoji: '🍁', left: '80px', bottom: '45px', rotation: -20, size: '3rem', zIndex: 14 },
-              { emoji: '🍂', left: '110px', bottom: '50px', rotation: 70, size: '2.9rem', zIndex: 15 },
-              { emoji: '🍁', left: '140px', bottom: '42px', rotation: -45, size: '2.8rem', zIndex: 16 },
-              { emoji: '🍂', left: '170px', bottom: '38px', rotation: 30, size: '2.7rem', zIndex: 17 },
-              
-              // Top layer - sparse, completing the asymmetrical shape
-              { emoji: '🍁', left: '65px', bottom: '65px', rotation: -30, size: '2.9rem', zIndex: 18 },
-              { emoji: '🍂', left: '95px', bottom: '68px', rotation: 40, size: '2.8rem', zIndex: 19 },
-              { emoji: '🍁', left: '125px', bottom: '62px', rotation: -55, size: '2.6rem', zIndex: 20 },
-              { emoji: '🍂', left: '150px', bottom: '58px', rotation: 15, size: '2.5rem', zIndex: 21 },
-              
-              // A few scattered leaves extending further right
-              { emoji: '🍁', left: '200px', bottom: '25px', rotation: -25, size: '2.8rem', zIndex: 22 },
-              { emoji: '🍂', left: '215px', bottom: '12px', rotation: 50, size: '2.6rem', zIndex: 23 },
-              { emoji: '🍁', left: '190px', bottom: '42px', rotation: -35, size: '2.4rem', zIndex: 24 },
-              
-              // A couple on the left side for natural taper
-              { emoji: '🍂', left: '8px', bottom: '28px', rotation: 65, size: '2.7rem', zIndex: 25 },
-              { emoji: '🍁', left: '20px', bottom: '40px', rotation: -20, size: '2.5rem', zIndex: 26 },
-            ].map((leaf, index) => (
-              <div
-                key={`pile-leaf-${index}`}
-                className="absolute cursor-pointer transition-all duration-200 hover:scale-110"
-                style={{
-                  left: leaf.left,
-                  bottom: leaf.bottom,
-                  fontSize: leaf.size,
-                  transform: `rotate(${leaf.rotation}deg)`,
-                  zIndex: leaf.zIndex,
-                  filter: 'drop-shadow(2px 2px 3px rgba(0,0,0,0.3))',
-                }}
-                onMouseEnter={(e) => {
-                  // Rustle effect on hover
-                  e.currentTarget.style.animation = 'rustle 0.3s ease-in-out';
-                }}
-                onAnimationEnd={(e) => {
-                  e.currentTarget.style.animation = '';
-                }}
-                onClick={() => window.open('https://www.youtube.com/watch?v=Mj7juCIHBGU', '_blank')}
-                title="Jump in the leaves! 🍂"
-              >
-                {leaf.emoji}
-              </div>
-            ))}
-          </div>
-        )}
       </div>
+
+      {/* Pile of Fall Leaves - Bottom Right - Asymmetrical - Interactive */}
+      {mounted && (
+        <div className="fixed bottom-0 right-0 z-20" style={{ width: '350px', height: '200px' }}>
+          {/* Create a realistic asymmetrical pile - extending more to the left now */}
+          {[
+            // Base layer - mostly center and right
+            { emoji: '🍂', right: '25px', bottom: '5px', rotation: 15, size: '3rem', zIndex: 1 },
+            { emoji: '🍁', right: '60px', bottom: '8px', rotation: -25, size: '3.4rem', zIndex: 2 },
+            { emoji: '🍂', right: '15px', bottom: '18px', rotation: 45, size: '2.8rem', zIndex: 3 },
+            { emoji: '🍁', right: '85px', bottom: '12px', rotation: -15, size: '3.2rem', zIndex: 4 },
+            { emoji: '🍂', right: '110px', bottom: '10px', rotation: 60, size: '3rem', zIndex: 5 },
+            { emoji: '🍁', right: '140px', bottom: '15px', rotation: -35, size: '2.9rem', zIndex: 6 },
+            
+            // Middle layer - more spread out to the right
+            { emoji: '🍂', right: '40px', bottom: '30px', rotation: 20, size: '3.3rem', zIndex: 7 },
+            { emoji: '🍁', right: '70px', bottom: '28px', rotation: -50, size: '3.1rem', zIndex: 8 },
+            { emoji: '🍂', right: '100px', bottom: '25px', rotation: 35, size: '2.8rem', zIndex: 9 },
+            { emoji: '🍁', right: '130px', bottom: '30px', rotation: -10, size: '3rem', zIndex: 10 },
+            { emoji: '🍂', right: '160px', bottom: '22px', rotation: 55, size: '3.2rem', zIndex: 11 },
+            { emoji: '🍁', right: '185px', bottom: '18px', rotation: -40, size: '2.9rem', zIndex: 12 },
+            
+            // Upper layer - fewer leaves, still extending right
+            { emoji: '🍂', right: '50px', bottom: '48px', rotation: 25, size: '3.1rem', zIndex: 13 },
+            { emoji: '🍁', right: '80px', bottom: '45px', rotation: -20, size: '3rem', zIndex: 14 },
+            { emoji: '🍂', right: '110px', bottom: '50px', rotation: 70, size: '2.9rem', zIndex: 15 },
+            { emoji: '🍁', right: '140px', bottom: '42px', rotation: -45, size: '2.8rem', zIndex: 16 },
+            { emoji: '🍂', right: '170px', bottom: '38px', rotation: 30, size: '2.7rem', zIndex: 17 },
+            
+            // Top layer - sparse, completing the asymmetrical shape
+            { emoji: '🍁', right: '65px', bottom: '65px', rotation: -30, size: '2.9rem', zIndex: 18 },
+            { emoji: '🍂', right: '95px', bottom: '68px', rotation: 40, size: '2.8rem', zIndex: 19 },
+            { emoji: '🍁', right: '125px', bottom: '62px', rotation: -55, size: '2.6rem', zIndex: 20 },
+            { emoji: '🍂', right: '150px', bottom: '58px', rotation: 15, size: '2.5rem', zIndex: 21 },
+            
+            // A few scattered leaves extending further right
+            { emoji: '🍁', right: '200px', bottom: '25px', rotation: -25, size: '2.8rem', zIndex: 22 },
+            { emoji: '🍂', right: '215px', bottom: '12px', rotation: 50, size: '2.6rem', zIndex: 23 },
+            { emoji: '🍁', right: '190px', bottom: '42px', rotation: -35, size: '2.4rem', zIndex: 24 },
+            
+            // A couple on the left side for natural taper
+            { emoji: '🍂', right: '8px', bottom: '28px', rotation: 65, size: '2.7rem', zIndex: 25 },
+            { emoji: '🍁', right: '20px', bottom: '40px', rotation: -20, size: '2.5rem', zIndex: 26 },
+          ].map((leaf, index) => (
+            <div
+              key={`pile-leaf-${index}`}
+              className="absolute cursor-pointer transition-all duration-200 hover:scale-110"
+              style={{
+                right: leaf.right,
+                bottom: leaf.bottom,
+                fontSize: leaf.size,
+                transform: `rotate(${leaf.rotation}deg)`,
+                zIndex: leaf.zIndex,
+                filter: 'drop-shadow(2px 2px 3px rgba(0,0,0,0.3))',
+              }}
+              onMouseEnter={(e) => {
+                // Rustle effect on hover
+                e.currentTarget.style.animation = 'rustle 0.3s ease-in-out';
+              }}
+              onAnimationEnd={(e) => {
+                e.currentTarget.style.animation = '';
+              }}
+              onClick={() => window.open('https://www.youtube.com/watch?v=Mj7juCIHBGU', '_blank')}
+              title="Jump in the leaves! 🍂"
+            >
+              {leaf.emoji}
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 } 
