@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import RSSParser from 'rss-parser';
 
 interface RSSItem {
   guid?: string;
@@ -12,11 +11,18 @@ interface RSSItem {
   'content:encoded'?: string;
 }
 
-const parser = new RSSParser({
-  customFields: {
-    item: ['content:encoded'],
-  },
-});
+interface Rss2JsonItem {
+  title: string;
+  pubDate: string;
+  link: string;
+  guid: string;
+  author: string;
+  thumbnail: string;
+  description: string;
+  content: string;
+  enclosure: object;
+  categories: string[];
+}
 
 function createSlug(title: string): string {
   return title
@@ -127,7 +133,7 @@ export async function GET() {
     }
     
     // Map rss2json items to our expected format
-    const posts = data.items.map((item: any, index: number) => transformMediumPost({
+    const posts = data.items.map((item: Rss2JsonItem, index: number) => transformMediumPost({
       ...item,
       'content:encoded': item.content, // rss2json puts full content in 'content'
       categories: item.categories || [],
