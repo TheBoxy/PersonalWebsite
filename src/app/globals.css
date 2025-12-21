@@ -19,6 +19,33 @@
   }
 }
 
+/* Snow effect styles */
+.snow-particles {
+  pointer-events: none;
+}
+.snow-flake {
+  position: absolute;
+  top: -10px;
+  user-select: none;
+  will-change: transform, opacity;
+  animation-name: snowFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes snowFall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) translateX(var(--drift, 0px)) rotate(180deg);
+  }
+  100% {
+    transform: translateY(100vh) translateX(calc(var(--drift, 0px) * 2)) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

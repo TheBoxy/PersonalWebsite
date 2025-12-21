@@ -33,6 +33,8 @@ export const metadata: Metadata = {
   description: "A website with folder-style navigation",
 };
 
+import SnowParticles from "./components/SnowParticles";
+
 export default function RootLayout({
   children,
 }: {
@@ -41,6 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geist.className} ${kalam.variable} ${fredoka.variable} min-h-screen`}>
+        <SnowParticles />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-6">
           <div className="relative">
             <FolderNavigation />
