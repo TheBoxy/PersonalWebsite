@@ -4,20 +4,20 @@ import Image from "next/image";
 import { useState, useEffect } from 'react';
 import Magnet from './components/Magnet';
 
-// Original color palette
+// Blue color palette for magnets
 const COLORS = [
-  '#FF6B6B', // Coral red
-  '#4ECDC4', // Turquoise
-  '#45B7D1', // Sky blue
-  '#FFA07A', // Light salmon
-  '#98D8C8', // Mint green
-  '#F7DC6F', // Bright yellow
-  '#BB8FCE', // Lavender
-  '#85C1E2', // Light blue
-  '#F8B88B', // Peach
-  '#52B788', // Green
-  '#FFB6C1', // Light pink
-  '#87CEEB', // Sky blue
+  '#3B82F6', // Blue
+  '#60A5FA', // Light blue
+  '#2563EB', // Medium blue
+  '#93C5FD', // Sky blue
+  '#1D4ED8', // Dark blue
+  '#DBEAFE', // Pale blue
+  '#3B9AE1', // Bright blue
+  '#4A90E2', // Azure blue
+  '#5B9BD5', // Cornflower blue
+  '#6BA3D1', // Steel blue
+  '#7BB3D9', // Light steel blue
+  '#8CC3E8', // Powder blue
 ];
 
 const INITIAL_TEXT = 'welcome to kevin\'s site';
@@ -232,8 +232,8 @@ export default function HomePage() {
               bottom: '-35px',
               marginLeft: windowWidth < 768 ? '10px' : '40px',
               marginRight: windowWidth < 768 ? '10px' : '40px',
-              background: '#45B7D1',
-              boxShadow: '0 0 20px rgba(69, 183, 209, 0.8), 0 0 40px rgba(69, 183, 209, 0.5), 0 0 60px rgba(69, 183, 209, 0.3)',
+              background: '#52B788',
+              boxShadow: '0 0 20px rgba(82, 183, 136, 0.8), 0 0 40px rgba(82, 183, 136, 0.5), 0 0 60px rgba(82, 183, 136, 0.3)',
             }}
           />
         )}
@@ -244,11 +244,11 @@ export default function HomePage() {
         {/* Profile and About Side by Side */}
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Profile Header */}
-          <div className="lg:w-1/3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 md:p-8 shadow-lg border-2 border-blue-300 relative overflow-hidden">
+          <div className="lg:w-1/3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 md:p-8 shadow-lg border-2 border-green-300 relative overflow-hidden">
             <div className="flex flex-col items-center text-center">
               {/* Profile Picture */}
               <div className="mb-6">
-                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-white p-1 shadow-lg border-4 border-blue-300 overflow-hidden">
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-white p-1 shadow-lg border-4 border-green-300 overflow-hidden">
                   <Image 
                     src="/images/photo.jpg" 
                     alt="Kevin Martinez" 
@@ -271,11 +271,11 @@ export default function HomePage() {
                 
                 {/* Tags */}
                 <div className="mb-6 flex flex-wrap gap-2 justify-center">
-                  <span className="inline-block bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-blue-300/50 tracking-wide">
+                  <span className="inline-block bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-green-300/50 tracking-wide">
                     Human 👤
                   </span>
                   <span 
-                    className="inline-block bg-gradient-to-r from-cyan-500 to-teal-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-cyan-300/50 tracking-wide cursor-pointer hover:scale-105 transition-transform"
+                    className="inline-block bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg border border-emerald-300/50 tracking-wide cursor-pointer hover:scale-105 transition-transform"
                     onClick={() => window.open('https://www.youtube.com/watch?v=b89CnP0Iq30', '_blank')}
                     title="Click to learn more! 🇲🇽"
                   >
@@ -295,7 +295,7 @@ export default function HomePage() {
           </div>
           
           {/* About Section */}
-          <div className="lg:w-2/3 bg-white rounded-2xl p-6 md:p-8 shadow-lg border-2 border-blue-200 relative overflow-hidden">
+          <div className="lg:w-2/3 bg-white rounded-2xl p-6 md:p-8 shadow-lg border-2 border-green-200 relative overflow-hidden">
             <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2 underline">
               
               About This Digital Folder
@@ -316,7 +316,7 @@ export default function HomePage() {
     </div>
     
             {/* Call to Action */}
-            <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-300">
+            <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-300">
               <p className="text-center text-gray-700 font-medium">
                 📂 <strong>Explore the folders above</strong> to discover my latest projects, thoughts, and resources! 🚀
               </p>

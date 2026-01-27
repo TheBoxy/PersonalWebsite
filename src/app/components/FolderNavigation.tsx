@@ -10,32 +10,32 @@ interface Tab {
   color: string;
 }
 
-// Original tab colors
+// Spring/green theme tab colors
 const tabs: Tab[] = [
   { 
     name: 'Home', 
     path: '/', 
-    color: '#FF6B6B'
+    color: '#52B788'
   },
   { 
     name: 'Blog', 
     path: '/blog', 
-    color: '#4ECDC4'
+    color: '#74C69D'
   },
   { 
     name: 'Projects', 
     path: '/projects', 
-    color: '#45B7D1'
+    color: '#95D5B2'
   },
   { 
     name: 'Music', 
     path: '/music', 
-    color: '#9B59B6'
+    color: '#6AB04C'
   },
   { 
     name: 'Resources', 
     path: '/resources', 
-    color: '#98D8C8'
+    color: '#A8E6CF'
   },
 ];
 
@@ -94,7 +94,10 @@ export default function FolderNavigation() {
                 boxShadow: isActive 
                   ? '0 -6px 12px rgba(0,0,0,0.2), -6px -6px 10px rgba(0,0,0,0.15), 6px -6px 10px rgba(0,0,0,0.15)' 
                   : '0 0 12px rgba(0,0,0,0.2)',
-                borderBottom: isActive ? 'none' : '1px solid rgba(0,0,0,0.1)',
+                borderBottom: isActive ? 'none' : `2px solid ${tab.color}`,
+                borderTop: `2px solid ${tab.color}`,
+                borderLeft: index === 0 ? 'none' : `2px solid ${tab.color}`,
+                borderRight: `2px solid ${tab.color}`,
               }}
             >
               {/* Curved ramps at bottom */}
@@ -112,8 +115,32 @@ export default function FolderNavigation() {
                   zIndex: -1
                 }}
               />
-              <span className="relative z-10 font-medium">
+              <span className="relative z-10 font-medium flex items-center gap-2 justify-center">
                 {tab.name}
+                {tab.path === '/blog' && (
+                  <span 
+                    className="relative flex items-center justify-center"
+                    title="New blog post available!"
+                    style={{ 
+                      zIndex: 20,
+                      opacity: 1,
+                    }}
+                  >
+                    <span 
+                      className="blog-notification-pulse absolute w-3 h-3 rounded-full"
+                      style={{
+                        backgroundColor: '#FF4444',
+                      }}
+                    />
+                    <span 
+                      className="relative w-2.5 h-2.5 rounded-full"
+                      style={{
+                        backgroundColor: '#FF4444',
+                        boxShadow: '0 0 4px rgba(255, 68, 68, 0.8)',
+                      }}
+                    />
+                  </span>
+                )}
               </span>
             </Link>
           );
