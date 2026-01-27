@@ -39,7 +39,13 @@ export default function BlogPage() {
       
       const data = await response.json();
       if (data.success && data.posts) {
-        setPosts(data.posts);
+        // Ensure posts are sorted by date (newest first)
+        const sortedPosts = [...data.posts].sort((a, b) => {
+          const dateA = new Date(a.date).getTime();
+          const dateB = new Date(b.date).getTime();
+          return dateB - dateA; // Descending order (newest first)
+        });
+        setPosts(sortedPosts);
         lastFetchRef.current = timestamp;
         setLastUpdated(new Date().toLocaleTimeString());
       } else {
@@ -50,7 +56,6 @@ export default function BlogPage() {
       if (!silent) {
         setError('Failed to load blog posts');
       }
-      console.error('Error fetching blog posts:', err);
       
       // If this is the initial load and fails, try fallback
       if (!silent && posts.length === 0) {
@@ -58,7 +63,7 @@ export default function BlogPage() {
           const blogPosts = await getBlogPosts();
           setPosts(blogPosts);
         } catch (fallbackErr) {
-          console.error('Fallback also failed:', fallbackErr);
+          // Fallback failed, error already set above
         }
       }
     } finally {

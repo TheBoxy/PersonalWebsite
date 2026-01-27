@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import Parser from 'rss-parser';
 
 interface RSSItem {
   guid?: string;
@@ -99,11 +100,26 @@ function transformMediumPost(item: RSSItem, index: number) {
   const content = item['content:encoded'] || item.content || '';
   const imageUrl = extractValidImage(content);
   
+  // Parse date more carefully - try multiple formats
+  let postDate: Date;
+  if (item.isoDate) {
+    postDate = new Date(item.isoDate);
+  } else if (item.pubDate) {
+    postDate = new Date(item.pubDate);
+  } else {
+    postDate = new Date();
+  }
+  
+  // Validate date
+  if (isNaN(postDate.getTime())) {
+    postDate = new Date();
+  }
+  
   return {
     id: item.guid || `medium-${index}`,
     title: item.title || 'Untitled Post',
     slug: createSlug(item.title || `untitled-post-${index}`),
-    date: new Date(item.pubDate || item.isoDate || Date.now()).toISOString(),
+    date: postDate.toISOString(),
     excerpt: extractExcerpt(content),
     content: content,
     tags: item.categories || ['Blog'],
@@ -113,53 +129,96 @@ function transformMediumPost(item: RSSItem, index: number) {
   };
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    // Use rss2json as a proxy to avoid Medium's 403 Forbidden error
-    const RSS2JSON_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://medium.com/feed/@kevinmartinez7616')}`;
+    const mediumRssUrl = 'https://medium.com/feed/@kevinmartinez7616';
+    let posts: ReturnType<typeof transformMediumPost>[] = [];
     
-    const feedResponse = await fetch(RSS2JSON_URL, {
-      next: { revalidate: 120 }
+    // Try parsing Medium RSS directly first (bypasses RSS2JSON cache)
+    try {
+      const parser = new Parser({
+        customFields: {
+          item: [
+            ['content:encoded', 'contentEncoded'],
+            ['media:content', 'mediaContent'],
+          ]
+        }
+      });
+      
+      const feed = await parser.parseURL(mediumRssUrl);
+      
+      // Map Medium RSS items to our expected format
+      posts = feed.items.map((item, index) => transformMediumPost({
+        guid: item.guid || item.link,
+        title: item.title,
+        pubDate: item.pubDate,
+        isoDate: item.isoDate,
+        categories: item.categories || [],
+        link: item.link,
+        content: item['content:encoded'] || item.content || item.contentSnippet || '',
+        'content:encoded': item['content:encoded'] || item.content || item.contentSnippet || ''
+      }, index));
+      
+    } catch (directError: any) {
+      // Fallback to RSS2JSON
+      const rssUrl = encodeURIComponent(mediumRssUrl);
+      const apiKey = process.env.RSS2JSON_API_KEY;
+      
+      let RSS2JSON_URL = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
+      if (apiKey) {
+        RSS2JSON_URL += `&api_key=${apiKey}&count=50`;
+      }
+      
+      const feedResponse = await fetch(RSS2JSON_URL, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      });
+
+      if (!feedResponse.ok) {
+        const errorText = await feedResponse.text();
+        throw new Error(`RSS2JSON returned status: ${feedResponse.status} - ${errorText}`);
+      }
+
+      const data = await feedResponse.json();
+      
+      if (data.status !== 'ok') {
+        throw new Error(`RSS2JSON returned error status: ${data.status} - ${data.message || 'Unknown error'}`);
+      }
+      
+      // Map rss2json items to our expected format
+      posts = data.items.map((item: Rss2JsonItem, index: number) => transformMediumPost({
+        ...item,
+        'content:encoded': item.content,
+        categories: item.categories || [],
+        isoDate: item.pubDate
+      }, index));
+    }
+    
+    // Sort posts by date (newest first) to ensure latest posts appear first
+    const sortedPosts = posts.sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateB - dateA; // Descending order (newest first)
     });
-
-    if (!feedResponse.ok) {
-      throw new Error(`RSS2JSON returned status: ${feedResponse.status}`);
-    }
-
-    const data = await feedResponse.json();
-    
-    if (data.status !== 'ok') {
-      throw new Error('RSS2JSON returned error status');
-    }
-    
-    // Map rss2json items to our expected format
-    const posts = data.items.map((item: Rss2JsonItem, index: number) => transformMediumPost({
-      ...item,
-      'content:encoded': item.content, // rss2json puts full content in 'content'
-      categories: item.categories || [],
-      isoDate: item.pubDate
-    }, index));
     
     const response = NextResponse.json({
       success: true,
-      posts: posts,
-      totalPosts: posts.length,
+      posts: sortedPosts,
+      totalPosts: sortedPosts.length,
       lastUpdated: new Date().toISOString()
     });
 
-    // Add cache-busting headers for development
-    if (process.env.NODE_ENV === 'development') {
-      response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-      response.headers.set('Pragma', 'no-cache');
-      response.headers.set('Expires', '0');
-    } else {
-      // In production, cache for 2 minutes for more responsive updates
-      response.headers.set('Cache-Control', 'public, max-age=120, s-maxage=120');
-    }
+    // Always use no-cache headers to ensure fresh data
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
 
     return response;
   } catch (error) {
-    console.error('Error fetching Medium RSS:', error);
     const errorResponse = NextResponse.json(
       { 
         success: false, 
