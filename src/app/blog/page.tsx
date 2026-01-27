@@ -51,21 +51,7 @@ export default function BlogPage() {
       } else {
         throw new Error(data.error || 'Failed to fetch posts');
       }
-    } catch (err) {
-      // Only show error if not a silent refresh
-      if (!silent) {
-        setError('Failed to load blog posts');
-      }
-      
-      // If this is the initial load and fails, try fallback
-      if (!silent && posts.length === 0) {
-        try {
-          const blogPosts = await getBlogPosts();
-          setPosts(blogPosts);
-        } catch (fallbackErr) {
-          // Fallback failed, error already set above
-        }
-      }
+    
     } finally {
       if (!silent) {
         setLoading(false);
