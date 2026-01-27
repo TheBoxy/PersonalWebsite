@@ -1,6 +1,6 @@
 'use client';
 
-import { getBlogPosts, BlogPost } from './data';
+import {  BlogPost } from './data';
 import BlogCard from './components/BlogCard';
 import { useEffect, useState, useRef } from 'react';
 

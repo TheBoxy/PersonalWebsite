@@ -129,7 +129,7 @@ function transformMediumPost(item: RSSItem, index: number) {
   };
 }
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const mediumRssUrl = 'https://medium.com/feed/@kevinmartinez7616';
     let posts: ReturnType<typeof transformMediumPost>[] = [];
@@ -159,7 +159,7 @@ export async function GET(request: Request) {
         'content:encoded': item['content:encoded'] || item.content || item.contentSnippet || ''
       }, index));
       
-    } catch (directError: any) {
+    } catch {
       // Fallback to RSS2JSON
       const rssUrl = encodeURIComponent(mediumRssUrl);
       const apiKey = process.env.RSS2JSON_API_KEY;
@@ -218,7 +218,7 @@ export async function GET(request: Request) {
     response.headers.set('Expires', '0');
 
     return response;
-  } catch (error) {
+  } catch {
     const errorResponse = NextResponse.json(
       { 
         success: false, 
