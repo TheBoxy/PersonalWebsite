@@ -9,6 +9,20 @@ export async function GET() {
     // YouTube RSS feed URL - works without any API key!
     const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 
+    const response = await fetch(RSS_URL, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; RSS Reader)',
+        'Accept': 'application/xml, text/xml, application/rss+xml',
+      },
+      next: { revalidate: 3600 },
+    });
+
+    if (!response.ok) {
+      throw new Error(`YouTube returned status ${response.status}`);
+    }
+
+    const xml = await response.text();
+
     const parser = new Parser({
       customFields: {
         item: [
@@ -18,7 +32,7 @@ export async function GET() {
       }
     });
 
-    const feed = await parser.parseURL(RSS_URL);
+    const feed = await parser.parseString(xml);
 
     // Transform RSS feed data to match the expected format
     const items = feed.items.map(item => {

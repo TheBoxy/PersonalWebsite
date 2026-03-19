@@ -212,6 +212,70 @@ export default function HomePage() {
 
   return (
     <div className="relative">
+      {/* Flying Plane with Love Banner */}
+      <div className="relative overflow-hidden w-full" style={{ height: '55px' }}>
+        <a
+          href="https://www.youtube.com/watch?v=FyKrICbnG7o"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fly-plane absolute flex items-center will-change-transform cursor-pointer"
+          style={{ top: '10px', left: '0px' }}
+        >
+          {/* Banner (trailing behind the plane) */}
+          <div
+            className="banner-flutter relative text-white px-5 py-1.5 font-bold text-sm whitespace-nowrap rounded-sm"
+            style={{
+              background: 'linear-gradient(135deg, #f43f5e 0%, #ec4899 50%, #f43f5e 100%)',
+              textShadow: '0 1px 2px rgba(0,0,0,0.3)',
+              boxShadow: '0 2px 10px rgba(244,63,94,0.4), inset 0 1px 0 rgba(255,255,255,0.2)',
+              borderTop: '1px solid rgba(255,255,255,0.3)',
+              borderBottom: '1px solid rgba(190,18,60,0.4)',
+            }}
+          >
+            A.E.G 1000% &hearts;
+            {/* Banner tail notch */}
+            <svg
+              className="absolute top-0 -left-[11px]"
+              width="12"
+              height="100%"
+              viewBox="0 0 12 32"
+              preserveAspectRatio="none"
+              style={{ height: '100%' }}
+            >
+              <polygon points="12,0 12,32 0,16" fill="#f43f5e" />
+            </svg>
+          </div>
+
+          {/* Rope connecting banner to plane */}
+          <svg width="35" height="12" viewBox="0 0 35 12" className="flex-shrink-0">
+            <path
+              d="M0 6 C8 3, 16 9, 24 5 C28 3, 32 6, 35 6"
+              stroke="#94a3b8"
+              strokeWidth="1.5"
+              fill="none"
+              strokeDasharray="4 2"
+            />
+          </svg>
+
+          {/* Airplane */}
+          <svg
+            width="44"
+            height="30"
+            viewBox="0 0 44 30"
+            className="flex-shrink-0"
+            style={{ filter: 'drop-shadow(1px 2px 3px rgba(0,0,0,0.15))' }}
+          >
+            <g transform="translate(0, 3)">
+              <ellipse cx="24" cy="12" rx="17" ry="3.5" fill="#3B82F6" />
+              <path d="M18 12 L25 2 L28 2.5 L23 12 L28 21.5 L25 22 Z" fill="#2563EB" />
+              <path d="M8 12 L11 6.5 L13 7 L11 12 L13 17 L11 17.5 Z" fill="#2563EB" />
+              <ellipse cx="37" cy="11.5" rx="2.8" ry="2" fill="#BFDBFE" />
+              <rect x="40" y="7.5" width="2" height="9" rx="1" fill="#1E40AF" />
+            </g>
+          </svg>
+        </a>
+      </div>
+
       {/* Magnet container with relative positioning */}
       <div className="relative mb-12" style={{ minHeight: windowWidth < 768 ? '280px' : '240px' }}>
         {magnets.map((magnet) => (

@@ -64,6 +64,36 @@
   }
 }
 
+/* Flying plane with love banner */
+@keyframes flyPlane {
+  0% {
+    transform: translateX(-500px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 20px));
+  }
+}
+
+@keyframes bannerFlutter {
+  0%, 100% { transform: rotate(0deg) skewX(0deg); }
+  30% { transform: rotate(0.5deg) skewX(-0.5deg); }
+  70% { transform: rotate(-0.5deg) skewX(0.5deg); }
+}
+
+.fly-plane {
+  animation-name: flyPlane;
+  animation-duration: 12s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: -3s;
+  animation-fill-mode: none;
+}
+
+.banner-flutter {
+  animation: bannerFlutter 1.2s ease-in-out infinite;
+  transform-origin: right center;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
