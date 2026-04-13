@@ -715,7 +715,7 @@ export default function MusicPage() {
                 onClick={handleVolumeClick}
               >
                 <div 
-                  className="h-full bg-gradient-to-b from-green-400 to-green-600 rounded-full transition-all duration-100" 
+                  className="h-full bg-gradient-to-b from-blue-400 to-blue-600 rounded-full transition-all duration-100" 
                   style={{ 
                     width: `${volume}%`,
                     boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.3)'

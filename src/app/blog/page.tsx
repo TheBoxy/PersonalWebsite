@@ -47,7 +47,13 @@ export default function BlogPage() {
         });
         setPosts(sortedPosts);
         lastFetchRef.current = timestamp;
-        setLastUpdated(new Date().toLocaleTimeString());
+        if (sortedPosts.length > 0) {
+          setLastUpdated(new Date(sortedPosts[0].date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }));
+        }
       } else {
         throw new Error(data.error || 'Failed to fetch posts');
       }
@@ -204,7 +210,7 @@ export default function BlogPage() {
         </p>
         {lastUpdated && (
           <p className="text-sm text-gray-400 mt-2">
-            Last updated: {lastUpdated}
+            Latest post: {lastUpdated}
           </p>
         )}
       </div>

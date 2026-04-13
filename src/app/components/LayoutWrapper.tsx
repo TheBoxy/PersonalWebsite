@@ -63,13 +63,13 @@ type TabColorData = {
   gridColor: string;
 };
 
-// Spring/green theme border colors - matching FolderNavigation tab colors
+// Cool blue theme border colors - matching FolderNavigation tab colors
 const TAB_COLORS: Record<string, TabColorData> = {
-  '/': { borderColor: '#52B788', gridColor: '#d4f4dd' },
-  '/blog': { borderColor: '#74C69D', gridColor: '#d9f5e3' },
-  '/projects': { borderColor: '#95D5B2', gridColor: '#e0f5ea' },
-  '/resources': { borderColor: '#A8E6CF', gridColor: '#e8f7ef' },
-  '/music': { borderColor: '#6AB04C', gridColor: '#d1e8c4' },
+  '/': { borderColor: '#3B82F6', gridColor: '#dbeafe' },
+  '/blog': { borderColor: '#60A5FA', gridColor: '#e0effe' },
+  '/projects': { borderColor: '#93C5FD', gridColor: '#e8f2ff' },
+  '/resources': { borderColor: '#A5B4FC', gridColor: '#eef0ff' },
+  '/music': { borderColor: '#2563EB', gridColor: '#d4e4fc' },
 };
 
 const getTabColor = (pathname: string) => {

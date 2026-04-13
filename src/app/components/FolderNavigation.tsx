@@ -10,32 +10,32 @@ interface Tab {
   color: string;
 }
 
-// Spring/green theme tab colors
+// Cool blue theme tab colors
 const tabs: Tab[] = [
   { 
     name: 'Home', 
     path: '/', 
-    color: '#52B788'
+    color: '#3B82F6'
   },
   { 
     name: 'Blog', 
     path: '/blog', 
-    color: '#74C69D'
+    color: '#60A5FA'
   },
   { 
     name: 'Projects', 
     path: '/projects', 
-    color: '#95D5B2'
+    color: '#93C5FD'
   },
   { 
     name: 'Music', 
     path: '/music', 
-    color: '#6AB04C'
+    color: '#2563EB'
   },
   { 
     name: 'Resources', 
     path: '/resources', 
-    color: '#A8E6CF'
+    color: '#A5B4FC'
   },
 ];
 
@@ -117,30 +117,6 @@ export default function FolderNavigation() {
               />
               <span className="relative z-10 font-medium flex items-center gap-2 justify-center">
                 {tab.name}
-                {tab.path === '/blog' && (
-                  <span 
-                    className="relative flex items-center justify-center"
-                    title="New blog post available!"
-                    style={{ 
-                      zIndex: 20,
-                      opacity: 1,
-                    }}
-                  >
-                    <span 
-                      className="blog-notification-pulse absolute w-3 h-3 rounded-full"
-                      style={{
-                        backgroundColor: '#FF4444',
-                      }}
-                    />
-                    <span 
-                      className="relative w-2.5 h-2.5 rounded-full"
-                      style={{
-                        backgroundColor: '#FF4444',
-                        boxShadow: '0 0 4px rgba(255, 68, 68, 0.8)',
-                      }}
-                    />
-                  </span>
-                )}
               </span>
             </Link>
           );
