@@ -598,7 +598,7 @@ export default function MusicPage() {
                             {video.snippet.title}
                           </p>
                           <p className="text-[10px] text-gray-500">
-                            {new Date(video.snippet.publishedAt).toLocaleDateString('en-US', { 
+                            {new Date(video.snippet.publishedAt + 'T12:00:00').toLocaleDateString('en-US', { 
                               month: 'short', 
                               day: 'numeric', 
                               year: 'numeric' 
