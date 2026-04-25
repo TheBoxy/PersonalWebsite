@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic';
 
 // Ordered by release date, newest first
 const VIDEOS = [
+  { videoId: '1MZ5e_RfUAo', title: 'Tengo Derechos - Garden Boy', publishedAt: '2026-04-24' },
   { videoId: 'OlZDo7mtHes', title: 'Desmadre del Gobierno - Garden Boy', publishedAt: '2026-04-17' },
   { videoId: 'FyKrICbnG7o', title: 'My Kind of Woman Cover - Garden Boy', publishedAt: '2026-03-16' },
   { videoId: 'EGRp6bItDC8', title: 'Bad Time - Garden Boy', publishedAt: '2025-11-14' },
